@@ -26,7 +26,7 @@
 <br />
 
 ## **ERD** 
-![ERD](https://i.imgur.com/5N7KUK0.png)
+![ERD](https://i.imgur.com/H8E5JKp.png)
 ***
 <br />
 
@@ -37,5 +37,7 @@
 ![Account Creation](https://i.imgur.com/rysWzhC.png)
 #### Login
 ![Login](https://i.imgur.com/khSIACf.png)
+#### Answer a question
+![Answer Question](https://i.imgur.com/6kGZoOM.png)
 #### Ask a question
-![Create Question](https://i.imgur.com/6kGZoOM.png)
+![Create Question](https://i.imgur.com/fyIAcMz.png)
