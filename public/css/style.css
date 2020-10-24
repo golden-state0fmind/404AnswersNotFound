@@ -1,6 +1,9 @@
 .navbar {
-	height: 55px;
+	height: 40px;
 	position: relative;
+}
+.navbar-nav {
+	margin: 0;
 }
 
 .navbar .form-inline {
@@ -9,19 +12,23 @@
 }
 
 .navbar .form-inline .form-control {
+	height: 50px;
 	width: 650px;
 }
 
 #search_glass {
-	height: 32px;
-	width: 32px;
+	height: 20px;
+	width: 20px;
+}
+
+#profile_bubble {
+	position: absolute;
+	right: 125px;
+	width: 70px;
 }
 
 #profile_blank {
-	
-	transform: scale(0.5);
-	-webkit-transform: scale(0.5);
-	-moz-transform: scale(0.5);
-	-ms-transform: scale(0.5);
-	-o-transform: scale(0.5);
+	background-color: white;
+	height: 75%;
+	width: 75%;
 }

@@ -28,16 +28,20 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/">404AnswerNotFound</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a href="/">Home</a></li>
+        <li class="nav-item"><a href="/questions">Questions</a></li>
+      </ul>
         <form action="/search" class="form-inline" method="GET">
           <input class="form-control mr-sm-2" type="search" placeholder="Search questions" aria-label="Search">
-          <!-- TODO: Add Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> to footer -->
+          <!-- TODO: Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> to footer -->
           <input id="search_glass" type="image" src="/images/search.png" alt="Eye" formmethod="GET" formaction="/search">
         </form>
-        <object id="profile_blank" type="image/svg+xml" data="/images/detectiveprofile.svg">
-          Your browser doesn't support SVG. Get a better browser.
-        </object>
+        <div id="profile_bubble" class="container-fluid rounded-circle">
+          <img id="profile_blank" class="rounded-circle" src="/images/user.png" alt="Blank">
+        </div>
     </nav>
   </header>
   <%- body %>
