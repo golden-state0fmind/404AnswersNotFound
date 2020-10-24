@@ -3,15 +3,15 @@ require('dotenv').config();
 module.exports = {
   "development": {
     "username": "antonioreyes",
-    "password": process.env.DB_PASS,
-    "database": "express_auth_development",
+    "password": null,
+    "database": "404User",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "antonioreyes",
-    "password": process.env.DB_PASS,
-    "database": "express_auth_test",
+    "password": null,
+    "database": "404User",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
