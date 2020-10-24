@@ -41,12 +41,32 @@ app.use((req, res, next) => {
 	next();
 });
 
+// Routes
+
 app.get('/', (req, res) => {
-	res.render('index');
+	const locals = {
+		title: '404AnswersNotFound',
+		description: 'Where answers are not found, but found.',
+	};
+	res.render('home', { meta: locals });
+});
+
+app.get('/test', (req, res) => {
+	const locals = {
+		title: 'Test',
+		description: 'This is a test',
+	};
+
+	res.render('test', { meta: locals });
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {
-	res.render('profile');
+	const locals = {
+		title: 'Test',
+		description: 'This is a test',
+	};
+
+	res.render('profile', { meta: locals });
 });
 
 app.use('/auth', require('./routes/auth'));
