@@ -1,5 +1,5 @@
 require('dotenv').config();
-require(__dirname + '/config/config.js')[process.env.DB_PASS];
+require(__dirname + '/config/config.json');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const flash = require('connect-flash');
