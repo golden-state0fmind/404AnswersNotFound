@@ -2,6 +2,7 @@
 	height: 55px;
 	position: relative;
 }
+
 .navbar .form-inline {
 	position: absolute;
 	right:15%;
@@ -14,4 +15,13 @@
 #search_glass {
 	height: 32px;
 	width: 32px;
+}
+
+#profile_blank {
+	
+	transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	-moz-transform: scale(0.5);
+	-ms-transform: scale(0.5);
+	-o-transform: scale(0.5);
 }

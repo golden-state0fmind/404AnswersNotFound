@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 		title: '404AnswersNotFound',
 		description: 'Where answers are not found, but found.',
 	};
-	res.render('index', { meta: locals });
+	res.render('home', { meta: locals });
 });
 
 app.get('/test', (req, res) => {
