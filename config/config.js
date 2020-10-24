@@ -2,22 +2,24 @@ require('dotenv').config();
 
 module.exports = {
   "development": {
-    "username": "brian",
+    "username": process.env.USER,
     "password": process.env.DB_PASS,
-    "database": "express_auth_development",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "database": process.env.DEV_DB,
+    "host": process.env.HOST,
+    "dialect": process.env.DIALECT
   },
   "test": {
-    "username": "brian",
+    "username": process.env.USER,
     "password": process.env.DB_PASS,
-    "database": "express_auth_test",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "database": process.env.TEST_DB,
+    "host": process.env.HOST,
+    "dialect": process.env.DIALECT
   },
   "production": {
-    "database": "express_auth_production",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": process.env.HOST,
+    "dialect": process.env.DIALECT
   }
 }
