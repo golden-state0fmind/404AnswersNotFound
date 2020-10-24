@@ -1,0 +1,17 @@
+.navbar {
+	height: 55px;
+	position: relative;
+}
+.navbar .form-inline {
+	position: absolute;
+	right:15%;
+}
+
+.navbar .form-inline .form-control {
+	width: 650px;
+}
+
+#search_glass {
+	height: 32px;
+	width: 32px;
+}
