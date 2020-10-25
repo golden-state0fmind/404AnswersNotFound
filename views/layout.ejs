@@ -43,8 +43,13 @@
           <!-- TODO: Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> to footer -->
           <input id="search_glass" type="image" src="/images/search.png" alt="Eye" formmethod="GET" formaction="/search">
         </form>
-        <div id="profile_bubble" class="container-fluid rounded-circle">
-          <img id="profile_blank" class="rounded-circle" src="/images/user.png" alt="Blank">
+        <div class="rounded-circle" id="profile_bubble">
+          <div id="drop" class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="user_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img id="profile_blank" class="rounded-circle" src="/images/user.png" alt="Blank"></button>
+            <div class="dropdown-menu" aria-labelledby="user_menu">
+              <a href="/auth/signup">Register</a>/<a href="/auth/login">Login</a>
+            </div>
+          </div>
         </div>
     </nav>
   </header>

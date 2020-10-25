@@ -9,9 +9,11 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			models.user.hasMany(models.question, {
-				foreignKey: 'createdBy',
+				foreignKey: { name: 'createdBy' },
 			});
-			models.user.hasMany(models.answer, { foreignKey: 'createdBy' });
+			models.user.hasMany(models.answer, {
+				foreignKey: { name: 'createdBy' },
+			});
 		}
 	}
 	user.init(

@@ -16,7 +16,6 @@ db.user
 			bio: 'I am me',
 		},
 	})
-	// eslint-disable-next-line no-unused-vars
 	.then(([user, created]) => {
 		db.question
 			.create({
@@ -26,7 +25,6 @@ db.user
 				createdBy: 1,
 				lastModifiedBy: 1,
 			})
-			// eslint-disable-next-line no-unused-vars
 			.then(([question, created]) => {
 				user.addQuestion(question).then(relationInfo => {
 					console.log(relationInfo);
