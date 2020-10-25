@@ -39,7 +39,13 @@ router.post('/signup', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-	res.render('auth/login');
+	// res.render('auth/login');
+	const locals = {
+		title: 'Login',
+		description: null,
+	};
+	res.render('auth/login', { meta: locals });
+	//console.log({ meta: locals })
 });
 
 router.post(
