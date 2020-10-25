@@ -47,17 +47,9 @@ app.get('/', (req, res) => {
 	const locals = {
 		title: '404AnswersNotFound',
 		description: 'Where answers are not found, but found.',
+		style: '/css/home.css',
 	};
 	res.render('home', { meta: locals });
-});
-
-app.get('/test', (req, res) => {
-	const locals = {
-		title: 'Test',
-		description: 'This is a test',
-	};
-
-	res.render('test', { meta: locals });
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {
@@ -69,11 +61,12 @@ app.get('/profile', isLoggedIn, (req, res) => {
 	res.render('profile', { meta: locals });
 });
 
-app.use('/auth', require('./routes/auth'));
+app.use('/auth', require('./controllers/auth'));
 
-var server = app.listen(process.env.PORT || 3000, () =>
+var server = app.listen(process.env.PORT || 8000, () =>
 	console.log(
-		`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000
+		`🎧You're listening to the smooth sounds of port ${
+			process.env.PORT || 3000
 		}🎧`
 	)
 );

@@ -34,18 +34,16 @@ router.post('/signup', (req, res) => {
 		})
 		.catch(err => {
 			req.flash('error', err.message);
-			res.redirect('/auth/signup');
+			res.redirect('auth/signup');
 		});
 });
 
 router.get('/login', (req, res) => {
-	// res.render('auth/login');
 	const locals = {
 		title: 'Login',
 		description: null,
 	};
 	res.render('auth/login', { meta: locals });
-	//console.log({ meta: locals })
 });
 
 router.post(

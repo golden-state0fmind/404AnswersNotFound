@@ -12,7 +12,7 @@
 }
 
 .navbar .form-inline .form-control {
-	height: 40px;
+	height: 25px;
 	width: 650px;
 	border: 2px solid transparent;
 }
@@ -23,17 +23,28 @@
 }
 
 #profile_bubble {
+	background-color: white;
 	position: absolute;
-	right: 125px;
-	width: 70px;
+	right: 175px;
+	width: 24px;
+	height: 24px;
 }
 
 #profile_blank {
-	background-color: white;
-	height: 75%;
-	width: 75%;
+	width: 26px;
 }
 
-.nav-item {
-	margin: 5px;
+#drop {
+	position: absolute;
+	bottom: -8px;
+	right: -25.3px;
+}
+
+#user_menu {
+	width: 63px;
+}
+
+.dropdown-menu {
+	font-size: 12px;
+	text-align: center;
 }
