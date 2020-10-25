@@ -35,8 +35,17 @@ module.exports = {
       bio: {
         type: Sequelize.STRING(500)
       },
+      profilePicture: {
+        type: Sequelize.STRING
+      },
       rating: {
         type: Sequelize.STRING
+      },
+      answerId: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
+      },
+      questionId: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       points: {
         type: Sequelize.INTEGER

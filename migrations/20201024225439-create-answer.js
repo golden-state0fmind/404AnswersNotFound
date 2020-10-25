@@ -11,7 +11,7 @@ module.exports = {
       createdBy: {
         type: Sequelize.INTEGER
       },
-      lastModifiedBy: {
+      lastModifiedByuserId: {
         type: Sequelize.INTEGER
       },
       lastModifiedDate: {

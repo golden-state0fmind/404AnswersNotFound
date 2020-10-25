@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.user.hasMany(models.questions);
+      models.user.hasMany(models.answers);
     }
   };
   user.init({
@@ -23,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     quote: DataTypes.STRING(200),
     jobTitle: DataTypes.STRING(25),
     bio: DataTypes.STRING(500),
+    profilePicture: DataTypes.STRING,
+    answerId: DataTypes.ARRAY(DataTypes.INTEGER),
+    questionId: DataTypes.ARRAY(DataTypes.INTEGER),
     rating: DataTypes.STRING,
     points: DataTypes.INTEGER
   }, {
