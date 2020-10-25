@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.get('/signup', (req, res) => {
 	const locals = {
-        title: 'Login',
-        description: null,
+		title: 'Login',
+		description: null,
 	};
 	res.render('auth/signup', { meta: locals });
 	// res.render('auth/signup');
@@ -45,18 +45,10 @@ router.post('/signup', (req, res) => {
 
 router.get('/login', (req, res) => {
 	const locals = {
-<<<<<<< Updated upstream:controllers/auth.js
 		title: 'Login',
 		description: null,
 	};
 	res.render('auth/login', { meta: locals });
-=======
-        title: 'Login',
-        description: null,
-	};
-	res.render('auth/login', { meta: locals });
-	// res.render('auth/login');
->>>>>>> Stashed changes:routes/auth.js
 });
 
 router.post(
@@ -71,14 +63,13 @@ router.post(
 
 router.get('/logout', (req, res) => {
 	const locals = {
-        title: 'Login',
-        description: null,
+		title: 'Login',
+		description: null,
 	};
 	res.render('auth/login', { meta: locals });
 	req.logout();
 	req.flash('success', 'You have logged out');
 	res.redirect('/');
 });
-
 
 module.exports = router;

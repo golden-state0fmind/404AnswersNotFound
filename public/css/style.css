@@ -21,19 +21,41 @@
 	height: 75%;
 	width: 75%;
 }
+
 #search_glass {
 	height: 20px;
 	width: 20px;
 }
+
 #profile_bubble {
 	position: absolute;
 	right: 125px;
 	width: 70px;
 }
-#new-email, #new-user, #new-password{
-	padding:25px;
-	margin: 25px;
-} 
+
+.signup-title{
+	display: block;
+    margin-left: 25%;
+	margin-right: 25%;
+	margin-top: 50px;
+}
+.signup-form{
+    padding: 5px;
+    margin-left: 25%;
+	margin-right: 25%;
+	margin-top: 50px;
+    width: 800px;
+}  
+
+.form-group1{
+	display: inline-block;
+	width: 48%;
+    padding: 20px 25px 20px 0px; 
+}
+
 .btn-primary{
+	position: relative;
+	top: 55%;
+	left: 25%;
 	background-color:#343a40;
 }
