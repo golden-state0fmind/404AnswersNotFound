@@ -3,5 +3,4 @@ test/
 node_modules
 .next
 views/
-models/
 migrations/

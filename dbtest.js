@@ -1,18 +1,38 @@
 require('dotenv').config();
 require(__dirname + '/config/config.js')[process.env.DB_PASS];
-const db = require('/models');
+const db = require('./models');
 
 db.user
 	.findOrCreate({
-		userName: 'c0dezer019',
-		password: '123',
-		firstName: 'Brian',
-		lastName: 'Blankenship',
+		where: {
+			username: 'c0dezer019',
+			password: 'fooBar',
+			firstName: 'Brian',
+			lastName: 'Blankenship',
+			email: 'brian.ga.edu@gmail.com',
+			title: 'hombre',
+			quote: 'Noooooooo!',
+			jobTitle: 'Software Engineer',
+			bio: 'I am me',
+		},
 	})
-	.then(createdUser => {
-		createdUser.createQuestion({
-			summary: 'Where am I?',
-			content: 'Who are you?',
-			category: 'Random',
-		});
+	// eslint-disable-next-line no-unused-vars
+	.then(([user, created]) => {
+		db.question
+			.create({
+				summary: 'Where are my car keys?',
+				content:
+					'I last put them on the kitchen counter and now they are gone. Can I write a function that will find my keys?',
+				createdBy: 1,
+				lastModifiedBy: 1,
+			})
+			// eslint-disable-next-line no-unused-vars
+			.then(([question, created]) => {
+				user.addQuestion(question).then(relationInfo => {
+					console.log(relationInfo);
+					console.log(
+						`${user.username} asked ${question.summary}`
+					);
+				});
+			});
 	});
