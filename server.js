@@ -47,17 +47,9 @@ app.get('/', (req, res) => {
 	const locals = {
 		title: '404AnswersNotFound',
 		description: 'Where answers are not found, but found.',
+		style: '/css/home.css',
 	};
 	res.render('home', { meta: locals });
-});
-
-app.get('/test', (req, res) => {
-	const locals = {
-		title: 'Test',
-		description: 'This is a test',
-	};
-
-	res.render('test', { meta: locals });
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {
