@@ -1,5 +1,9 @@
 require('dotenv').config();
+<<<<<<< HEAD
+require(__dirname + '/config/config.json');
+=======
 require(__dirname + '/config/config.js');
+>>>>>>> submaster
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const flash = require('connect-flash');
