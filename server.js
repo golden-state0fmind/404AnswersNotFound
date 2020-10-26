@@ -1,5 +1,5 @@
 require('dotenv').config();
-require(__dirname + '/config/config.js');
+require(__dirname + '/config/config.json');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const flash = require('connect-flash');
@@ -57,7 +57,6 @@ app.get('/profile', isLoggedIn, (req, res) => {
 		title: 'Test',
 		description: 'This is a test',
 	};
-
 	res.render('profile', { meta: locals });
 });
 
