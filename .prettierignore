@@ -2,5 +2,9 @@ package-lock.json
 .next
 node_modules/
 views/
+<<<<<<< HEAD
 migrations/
 
+=======
+migrations/
+>>>>>>> submaster

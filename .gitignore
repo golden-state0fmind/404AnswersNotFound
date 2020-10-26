@@ -2,6 +2,5 @@
 .vscode
 node_modules
 package-lock.json
-migrations
 views/test.ejs
 config/config.json
