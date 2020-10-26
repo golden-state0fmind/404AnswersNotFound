@@ -1,0 +1,19 @@
+html, body {
+	height: 100%;
+}
+
+#content_holder {
+	width: 679px;
+}
+
+#qQuestion {
+	margin-top: 100px;
+}
+
+#qQuestion div button {
+	height: 30px;
+	line-height: 0.5;
+	position: relative;
+	bottom: 20px;
+	left: 570px;
+}
