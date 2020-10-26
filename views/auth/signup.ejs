@@ -1,3 +1,4 @@
+<!-- 
 <form action="/auth/signup" method="POST">
   <label for="new-email">Email</label>
   <input id="new-email" type="email" name="email">
@@ -9,4 +10,44 @@
   <input id="new-password" type="password" name="password">
 
   <input type="submit" value="Sign up">
-</form>
+</form> -->
+<h1 class="signup-title">Create a new account</h1>
+<div class= "signup-form">
+  <form action="/auth/signup" method="POST">
+    
+    <div class="form-group1">
+      <label for="new-firstName">First Name</label>
+      <input type="text" class="form-control" id="new-firstName" required>
+    </div>
+    <div class="form-group1">
+      <label for="new-lastName">Last Name</label>
+      <input type="text" class="form-control" id="new-lastName" required>
+    </div>
+    <div class="form-group-newEmail">
+      <label for="new-email">Email address</label>
+      <input type="email" class="form-control" id="new-email" required>
+    </div>
+    <div class="form-group-newUsername">
+      <label for="new-userName">Username</label>
+      <input type="text" class="form-control" id="new-username" required>
+    </div>
+
+    <div class="form-group3-newPassword">
+      <label for="new-password">Password</label>
+      <input type="password" class="form-control" id="new-password" required>
+    </div>
+
+    <div class="password-req">
+      <h5 id="password-reqTitle">Password Requirements</h5>
+      <h6 id="password-reqUl">
+        <ul>
+          <li>Must be 15 to 99 alphanumeric characters.</li>
+          <li>Must contain at least one uppercase character.</li>
+        </ul>  
+      </h6>
+    </div>  
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+</div>

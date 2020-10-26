@@ -2,8 +2,8 @@ require('dotenv').config();
 require(__dirname + '/config/config.js')[process.env.DB_PASS];
 const db = require('./models');
 
-db.user
-	.findOrCreate({
+async function runTest() {
+	const user = await db.user.findOrCreate({
 		where: {
 			username: 'c0dezer019',
 			password: 'fooBar',
@@ -15,22 +15,16 @@ db.user
 			jobTitle: 'Software Engineer',
 			bio: 'I am me',
 		},
-	})
-	.then(([user, created]) => {
-		db.question
-			.create({
-				summary: 'Where are my car keys?',
-				content:
-					'I last put them on the kitchen counter and now they are gone. Can I write a function that will find my keys?',
-				createdBy: 1,
-				lastModifiedBy: 1,
-			})
-			.then(([question, created]) => {
-				user.addQuestion(question).then(relationInfo => {
-					console.log(relationInfo);
-					console.log(
-						`${user.username} asked ${question.summary}`
-					);
-				});
-			});
 	});
+
+	const question = await db.question.create({
+		summary: 'Where is my purse?',
+		content:
+			'I last put them on the counter and now they are gone. Can I write a function that will find my keys?',
+		lastModifiedBy: 1,
+	});
+
+	user.addAssociation(question);
+}
+
+runTest();

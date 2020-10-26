@@ -6,7 +6,12 @@ const passport = require('../config/ppConfig');
 const router = express.Router();
 
 router.get('/signup', (req, res) => {
-	res.render('auth/signup');
+	const locals = {
+		title: 'Login',
+		description: null,
+	};
+	res.render('auth/signup', { meta: locals });
+	// res.render('auth/signup');
 });
 
 router.post('/signup', (req, res) => {
@@ -57,6 +62,11 @@ router.post(
 );
 
 router.get('/logout', (req, res) => {
+	const locals = {
+		title: 'Login',
+		description: null,
+	};
+	res.render('auth/login', { meta: locals });
 	req.logout();
 	req.flash('success', 'You have logged out');
 	res.redirect('/');
