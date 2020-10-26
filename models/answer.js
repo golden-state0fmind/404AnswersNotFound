@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			models.answer.belongsTo(models.user, {
 				foreignKey: 'createdBy',
+				target: 'username',
 			});
 		}
 	}

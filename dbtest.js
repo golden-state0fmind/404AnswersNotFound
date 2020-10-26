@@ -17,14 +17,21 @@ async function runTest() {
 		},
 	});
 
-	const question = await db.question.create({
-		summary: 'Where is my purse?',
-		content:
-			'I last put them on the counter and now they are gone. Can I write a function that will find my keys?',
-		lastModifiedBy: 1,
-	});
-
-	user.addAssociation(question);
+	await db.question.create(
+		{
+			summary: 'Where is my purse?',
+			content:
+				'I last put them on the counter and now they are gone. Can I write a function that will find my keys?',
+			lastModifiedBy: 1,
+		},
+		{
+			include: [
+				{
+					association: user,
+				},
+			],
+		}
+	);
 }
 
 runTest();
