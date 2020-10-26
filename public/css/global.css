@@ -17,6 +17,12 @@
 	border: 2px solid transparent;
 }
 
+#profile_blank {
+	background-color: white;
+	height: 75%;
+	width: 75%;
+}
+
 #search_glass {
 	height: 20px;
 	width: 20px;
@@ -29,6 +35,8 @@
 	width: 24px;
 	height: 24px;
 }
+<<<<<<< HEAD:public/css/style.css
+=======
 
 #profile_blank {
 	width: 26px;
@@ -48,3 +56,4 @@
 	font-size: 12px;
 	text-align: center;
 }
+>>>>>>> submaster:public/css/global.css
