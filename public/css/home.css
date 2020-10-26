@@ -6,6 +6,19 @@ html, body {
 	width: 679px;
 }
 
+#recent_questions {
+	height: 200px;
+	margin-top: 80px;
+}
+
+#recent_questions header {
+	width: 250px;
+}
+#recent_answers {
+	height: 200px;
+	margin-top: 40px;
+}
+
 #qQuestion {
 	margin-top: 100px;
 }
