@@ -1,0 +1,35 @@
+<div class="container-fluid">
+	<div class="container" id="content_holder">
+		<main>
+			<section>
+				<form id="qQuestion" action="/ask" method="post">
+					<div class="form-group">
+						<label for="content"> Quick Question:</label>
+						<textarea type="text" class="form-control" id="content"
+							aria-describedby="content_help"></textarea>
+						<small id="contentHelp" class="form-text text-muted">View our <a href="#">guidelines</a> to make
+							a quality question.</small>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+			</section>
+			<hr>
+			<section id="recent_questions">
+				<header>
+					<h3>Recent Questions</h3>
+				</header>
+				<article>
+					<!-- Loop through the recent five posts -->
+				</article>
+			</section>
+			<section id="recent_answers">
+				<header>
+					<h3>Recent Answers</h3>
+				</header>
+				<article>
+					<!-- Loop through the recent five answers -->
+				</article>
+			</section>
+		</main>
+	</div>
+</div>

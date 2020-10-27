@@ -2,3 +2,5 @@ config/
 test/
 node_modules
 .next
+views/
+migrations/

@@ -1,0 +1,18 @@
+/* styling for the login views */
+body {
+	background-color: #818181;
+}
+.container {
+	display: flex;
+	width: 50%;
+	justify-content: center;
+	border: 3px solid #ffffff;
+	padding: 50px;
+	margin-top: 250px;
+}
+.form-group input {
+	width: 100%;
+}
+#login {
+	color: whitesmoke;
+}
