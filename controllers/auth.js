@@ -7,14 +7,15 @@ router.get('/signup', (req, res) => {
 	const locals = {
 		title: 'Login',
 		description: null,
+		style: '/css/signup.css',
 	};
 	res.render('auth/signup', { meta: locals });
 	// res.render('auth/signup');
 });
 
 router.post('/signup', (req, res) => {
-	db.user
-		.findOrCreate({
+	async function createUser() {
+		const user = await db.user.findOrCreate({
 			where: {
 				email: req.body.email,
 			},
@@ -22,23 +23,26 @@ router.post('/signup', (req, res) => {
 				name: req.body.name,
 				password: req.body.password,
 			},
-		})
-		.then(([user, created]) => {
-			// If created, this means success, redirect to home.
-			if (created) {
-				passport.authenticate('local', {
-					successRedirect: '/',
-					successFlash: 'Account created and user logged in!',
-				})(req, res);
-			} else {
-				req.flash('error', 'Email already exists!');
-				res.redirect('/auth/signup');
-			}
-		})
-		.catch(err => {
-			req.flash('error', err.message);
-			res.redirect('auth/signup');
 		});
+
+		// 		.then(([user, created]) => {
+		// 			// If created, this means success, redirect to home.
+		// 			if (created) {
+		// 				passport.authenticate('local', {
+		// 					successRedirect: '/',
+		// 					successFlash:
+		// 						'Account created and user logged in!',
+		// 				})(req, res);
+		// 			} else {
+		// 				req.flash('error', 'Email already exists!');
+		// 				res.redirect('/auth/signup');
+		// 			}
+		// 		})
+		// 		.catch(err => {
+		// 			req.flash('error', err.message);
+		// 			res.redirect('auth/signup');
+		// 		});
+	}
 });
 
 router.get('/login', (req, res) => {
