@@ -1,5 +1,7 @@
 html, body {
 	height: 100%;
+	background-color: #8D98A7;
+	color: antiquewhite;
 }
 
 #content_holder {
@@ -14,9 +16,10 @@ textarea.form-control {
 }
 
 #recent_questions {
-	height: 200px;
-	margin-top: 80px;
-}
+    height: 200px;
+    margin-top: 20px;
+	background-color: #343a40;
+}	
 
 #recent_questions header {
 	width: 250px;
@@ -24,6 +27,8 @@ textarea.form-control {
 #recent_answers {
 	height: 200px;
 	margin-top: 40px;
+	margin-bottom: 40px;
+	background-color: #343a40;
 }
 
 #qQuestion {
@@ -42,6 +47,6 @@ textarea.form-control {
 	flex-direction: column;
 	width: 250px;
 	position: relative;
-	left: 112%;
-	top: 23%;
+	left: 115%;
+	top: 15%;
 }
