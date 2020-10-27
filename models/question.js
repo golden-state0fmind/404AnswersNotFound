@@ -17,12 +17,50 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	question.init(
 		{
-			category: DataTypes.STRING,
-			createdBy: DataTypes.STRING,
-			lastModifiedBy: DataTypes.INTEGER,
-			lastModifiedDate: DataTypes.DATE,
-			summary: DataTypes.STRING,
-			content: DataTypes.TEXT,
+			category: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			createdBy: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			lastModifiedBy: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
+			lastModifiedDate: {
+				type: DataTypes.DATE,
+			},
+			summary: {
+				type: DataTypes.STRING,
+				allowNull: false,
+				validate: {
+					notNull: true,
+					notEmpty: true,
+					len: {
+						args: [100 - 255],
+						msg: 'Must be between 100 to 255 characters',
+					},
+					min: {
+						args: 100,
+						// eslint-disable-next-line prettier/prettier
+						msg: 'Must be at least 100 characters long to ensure quality control.',
+					},
+					max: {
+						args: 255,
+						msg: 'Must be 255 characters or less.',
+					},
+				},
+			},
+			content: {
+				type: DataTypes.TEXT,
+				allowNull: false,
+				validate: {
+					notNull: true,
+					notEmpty: true,
+				},
+			},
 			upVotes: DataTypes.INTEGER,
 			downVotes: DataTypes.STRING,
 			answerIds: DataTypes.ARRAY(DataTypes.INTEGER),
