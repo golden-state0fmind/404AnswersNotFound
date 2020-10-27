@@ -3,7 +3,14 @@ html, body {
 }
 
 #content_holder {
-	width: 679px;
+	display: inline-block;
+	width: 1115px;
+	height: 500px;
+	padding-left: 228px;
+}
+
+textarea.form-control {
+    height: 100px;
 }
 
 #recent_questions {
@@ -28,5 +35,13 @@ html, body {
 	line-height: 0.5;
 	position: relative;
 	bottom: 20px;
-	left: 570px;
+	left: 797px;
+}
+#categories{
+	display: flex;
+	flex-direction: column;
+	width: 250px;
+	position: relative;
+	left: 112%;
+	top: 23%;
 }
