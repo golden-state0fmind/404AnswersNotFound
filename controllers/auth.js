@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 const db = require('../models');
 const express = require('express');
 const passport = require('../config/ppConfig');

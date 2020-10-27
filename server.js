@@ -62,6 +62,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 });
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/inquire', require('./controllers/inquire'));
 
 var server = app.listen(process.env.PORT || 8000, () =>
 	console.log(

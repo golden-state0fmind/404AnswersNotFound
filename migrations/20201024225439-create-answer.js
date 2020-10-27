@@ -18,6 +18,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       content: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       upVotes: {
