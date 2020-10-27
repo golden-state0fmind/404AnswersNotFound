@@ -9,10 +9,13 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			models.user.hasMany(models.question, {
-				foreignKey: { name: 'createdBy' },
+				foreignKey: 'createdBy',
+				target: 'username',
 			});
 			models.user.hasMany(models.answer, {
-				foreignKey: { name: 'createdBy' },
+				foreignKey: {
+					name: 'createdBy',
+				},
 			});
 		}
 	}
