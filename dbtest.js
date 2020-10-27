@@ -3,18 +3,16 @@ require(__dirname + '/config/config.js')[process.env.DB_PASS];
 const db = require('./models');
 
 db.user
-	.findOrCreate({
-		where: {
-			username: 'coddd',
-			password: 'moo',
-			firstName: 'Brian',
-			lastName: 'Blankenship',
-			email: 'brian.ga.eddul@gmail.com',
-			title: 'hombre',
-			quote: 'Noooooooo!',
-			jobTitle: 'Software Engineer',
-			bio: 'I am me',
-		},
+	.create({
+		username: 'coddd',
+		password: 'moo',
+		firstName: 'Brian',
+		lastName: 'Blankenship',
+		email: 'brian.ga.eddul@gmail.com',
+		title: 'hombre',
+		quote: 'Noooooooo!',
+		jobTitle: 'Software Engineer',
+		bio: 'I am me',
 	})
 	.then(([user, created]) => {
 		console.log('This is\n', user);
@@ -33,6 +31,9 @@ db.user
 						console.log(error);
 					});
 			});
+	})
+	.catch(error => {
+		console.log(error);
 	});
 
 db.categories
