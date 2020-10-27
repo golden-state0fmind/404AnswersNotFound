@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 	question.init(
 		{
 			category: DataTypes.STRING,
-			createdBy: DataTypes.INTEGER,
+			createdBy: DataTypes.STRING,
 			lastModifiedBy: DataTypes.INTEGER,
 			lastModifiedDate: DataTypes.DATE,
 			summary: DataTypes.STRING,

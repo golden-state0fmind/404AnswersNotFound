@@ -32,5 +32,10 @@
     "pg": "^8.4.1",
     "sequelize": "^6.3.5"
   },
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "off"
+    }
+  },
   "lint": "eslint --fix . && echo 'Lint complete.'"
 }
