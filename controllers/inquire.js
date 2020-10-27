@@ -3,7 +3,7 @@ const express = require('express');
 const passport = require('../config/ppConfig');
 const router = express.Router();
 
-router.get('/inquire/create/inquisition', (req, res) => {
+router.get('/create/inquisition', (req, res) => {
 	const locals = {
 		title: 'Ask a Question',
 		description: null,
@@ -11,7 +11,7 @@ router.get('/inquire/create/inquisition', (req, res) => {
 		style: "/css/inquisition.css",
 	};
 
-	res.render('inquire/ask', { meta: locals });
+	res.render('inquire/inquisition', { meta: locals });
 });
 
 module.exports = router;
