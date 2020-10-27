@@ -19,10 +19,10 @@ router.get('/inquiry/:id', (req, res) => {
 		title: req.params.id,
 		description: req.body.summary,
 		// eslint-disable-next-line prettier/prettier
-		style: 'css/inquiry.css',
+		style: '/css/inquiry.css',
 	};
 
-	res.render('/inquire/inquiry', { meta: locals });
+	res.render('inquire/inquiry', { meta: locals });
 });
 
 module.exports = router;

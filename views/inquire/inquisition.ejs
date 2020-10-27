@@ -1,21 +1,23 @@
 <div class="container-fluid">
-	<div class="container" id="content_holder">
-		<main>
+	<main>
+		<div class="container" id="content_holder">
 			<section>
 				<form id="post" action="/create/inquisition" method="post">
 					<div class="form-group">
 						<div class="container" id="sum_container">
 							<label for="summary">Summary: </label>
-							<input class="form-control" type="text" name="summary" id="summary" aria-describedby="summary" required>
+							<input class="form-control" type="text" name="summary" id="summary"
+								aria-describedby="summary" required>
 							<small id="summary_help" class="contentHelper form-text text-muted">
 								The shorted version of your inquiry. 255 characters max.
 							</small>
 						</div>
 						<div class="container" id="detail_container">
 							<label for="details"> Details:</label>
-							<textarea type="text" class="form-control" id="details"
-								aria-describedby="detail_help" cols="25" rows="10" required></textarea>
-							<small id="detail_help" class="contentHelper form-text text-muted">View our <a href="#">guidelines</a> to make
+							<textarea type="text" class="form-control" id="details" aria-describedby="detail_help"
+								cols="25" rows="10" required></textarea>
+							<small id="detail_help" class="contentHelper form-text text-muted">View our <a
+									href="#">guidelines</a> to make
 								a quality question.</small>
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
@@ -41,6 +43,6 @@
 					<!-- Loop through the recent five posts -->
 				</article>
 			</section>
-		</main>
-	</div>
+		</div>
+	</main>
 </div>
