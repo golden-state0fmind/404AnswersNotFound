@@ -10,7 +10,6 @@ router.get('/create/inquisition', (req, res) => {
 		// eslint-disable-next-line prettier/prettier
 		style: '/css/inquisition.css',
 	};
-
 	res.render('inquire/inquisition', { meta: locals });
 });
 
