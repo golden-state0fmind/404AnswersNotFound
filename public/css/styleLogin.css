@@ -11,8 +11,12 @@ body {
 	margin-top: 250px;
 }
 .form-group input {
+	display: inline;
 	width: 100%;
 }
 #login {
+	color: whitesmoke;
+}
+#registerbtn {
 	color: whitesmoke;
 }

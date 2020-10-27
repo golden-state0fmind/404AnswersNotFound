@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
 	height: 100%;
 	background-color: #8D98A7;
 	color: antiquewhite;
@@ -49,4 +50,19 @@ textarea.form-control {
 	position: relative;
 	left: 115%;
 	top: 15%;
+	left: 570px;
+}
+#user,
+#password {
+	width: 200px;
+}
+#password_label {
+	margin-left: 10px;
+}
+#user_container,
+#pass_container {
+	display: inline-block;
+}
+#registerbtn {
+	display: inline;
 }

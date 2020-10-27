@@ -1,6 +1,7 @@
 <div class="container-fluid">
 	<div class="container" id="content_holder">
-			<section>
+		<main>
+			<!-- <section>
 				<form id="qQuestion" action="/ask" method="post">
 					<div class="form-group">
 						<label for="content"> Quick Question:</label>
@@ -11,7 +12,26 @@
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</form>
-			</section>
+			</section> -->
+			<div class="container">
+				<form class="form" action="/auth/login" method="GET">
+					<div class="form-group">
+						<div id="user_container">
+							<label id="user_label" for="user" class="loginlabel">Login</label>
+							<!-- user login  -->
+							<input class="form-control" id="user" type="text" name="user"
+								placeholder="email or user name" required>
+						</div>
+						<div id="pass_container">
+							<label id="password_label" for="password" class="loginlabel">Password</label>
+							<!-- user password -->
+							<input type="password" class="form-control" id="password" name="password" required>
+						</div>
+						<button type="submit" class="btn btn-dark" value=" ">Login</button>
+					</div>
+				</form>
+				<button type="submit" class="btn btn-dark" id="registerbtn"><a href="/auth/signup">Register</a></button>
+			</div>
 			<hr>
 			<section id="recent_questions" class="rounded">
 				<header>

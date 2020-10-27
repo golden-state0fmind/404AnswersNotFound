@@ -8,11 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      catId: {
-        type: Sequelize.INTEGER
+      category: {
+        type: Sequelize.STRING
       },
       createdBy: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
       },
       lastModifiedBy: {
         type: Sequelize.INTEGER
