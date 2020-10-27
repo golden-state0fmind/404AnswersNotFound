@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/create/inquisition', (req, res) => {
 	const locals = {
-		title: 'Ask a Question',
+		title: 'Make an inquisition',
 		description: null,
 		// eslint-disable-next-line prettier/prettier
 		style: '/css/inquisition.css',
