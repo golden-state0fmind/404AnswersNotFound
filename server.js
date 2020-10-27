@@ -1,5 +1,5 @@
 require('dotenv').config();
-require(__dirname + '/config/config.json');
+require(__dirname + '/config/config.js');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const flash = require('connect-flash');
@@ -57,6 +57,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 		title: 'Test',
 		description: 'This is a test',
 	};
+
 	res.render('profile', { meta: locals });
 });
 
@@ -64,7 +65,7 @@ app.use('/auth', require('./controllers/auth'));
 
 var server = app.listen(process.env.PORT || 8000, () =>
 	console.log(
-		`🎧You're listening to the smooth sounds of port ${process.env.PORT || 8000
+		`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000
 		}🎧`
 	)
 );
