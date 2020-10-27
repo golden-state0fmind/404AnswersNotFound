@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/create/inquisition', (req, res) => {
 	const locals = {
-		title: 'Ask a Question',
+		title: 'Make an inquisition',
 		description: null,
 		// eslint-disable-next-line prettier/prettier
 		style: '/css/inquisition.css',
@@ -18,10 +18,10 @@ router.get('/inquiry/:id', (req, res) => {
 		title: req.params.id,
 		description: req.body.summary,
 		// eslint-disable-next-line prettier/prettier
-		style: 'css/inquiry.css',
+		style: '/css/inquiry.css',
 	};
 
-	res.render('/inquire/inquiry', { meta: locals });
+	res.render('inquire/inquiry', { meta: locals });
 });
 
 module.exports = router;

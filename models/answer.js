@@ -16,10 +16,26 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	answer.init(
 		{
-			createdBy: DataTypes.INTEGER,
-			lastModifiedBy: DataTypes.INTEGER,
-			lastModifiedDate: DataTypes.DATE,
-			content: DataTypes.TEXT,
+			createdBy: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
+			lastModifiedBy: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
+			lastModifiedDate: {
+				type: DataTypes.DATE,
+				allowNull: false,
+			},
+			content: {
+				type: DataTypes.TEXT,
+				allowNull: false,
+				validate: {
+					notNull: true,
+					notEmpty: true,
+				}
+			},
 			upVotes: DataTypes.INTEGER,
 			downVotes: DataTypes.INTEGER,
 		},
