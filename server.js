@@ -1,10 +1,10 @@
 require('dotenv').config();
-require(__dirname + '/config/config.js');
+require(__dirname + '/config/config.json');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const flash = require('connect-flash');
 const layouts = require('express-ejs-layouts');
-const passport = require('./config/ppConfig');
+const passport = require('./config/ppconfig.js');
 const session = require('express-session');
 const app = express();
 
@@ -66,8 +66,7 @@ app.use('/inquire', require('./controllers/inquire'));
 
 var server = app.listen(process.env.PORT || 8000, () =>
 	console.log(
-		`🎧You're listening to the smooth sounds of port ${
-			process.env.PORT || 3000
+		`🎧You're listening to the smooth sounds of port ${process.env.PORT || 8000
 		}🎧`
 	)
 );

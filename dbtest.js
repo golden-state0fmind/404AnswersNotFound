@@ -1,5 +1,5 @@
 require('dotenv').config();
-require(__dirname + '/config/config.js')[process.env.DB_PASS];
+require(__dirname + '/config/config.json')[process.env.DB_PASS];
 const db = require('./models');
 
 db.user

@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
 	height: 100%;
 }
 
 #content_holder {
-	width: 679px;
+	width: 800px;
 }
 
 #recent_questions {
@@ -29,4 +30,18 @@ html, body {
 	position: relative;
 	bottom: 20px;
 	left: 570px;
+}
+#user,
+#password {
+	width: 200px;
+}
+#password_label {
+	margin-left: 10px;
+}
+#user_container,
+#pass_container {
+	display: inline-block;
+}
+#registerbtn {
+	display: inline;
 }
