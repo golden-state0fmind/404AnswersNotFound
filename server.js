@@ -4,7 +4,7 @@ const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const flash = require('connect-flash');
 const layouts = require('express-ejs-layouts');
-const passport = require('./config/ppconfig.js');
+const passport = require('./config/ppConfig.js');
 const session = require('express-session');
 const app = express();
 
