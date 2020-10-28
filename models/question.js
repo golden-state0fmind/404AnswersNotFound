@@ -19,15 +19,12 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			category: {
 				type: DataTypes.STRING,
-				allowNull: false,
 			},
 			createdBy: {
 				type: DataTypes.STRING,
-				allowNull: false,
 			},
 			lastModifiedBy: {
 				type: DataTypes.INTEGER,
-				allowNull: false,
 			},
 			lastModifiedDate: {
 				type: DataTypes.DATE,

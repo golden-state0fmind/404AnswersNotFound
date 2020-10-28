@@ -1,6 +1,6 @@
 const db = require('../models');
 const express = require('express');
-const passport = require('../config/ppconfig.js');
+const passport = require('../config/ppConfig.js');
 const router = express.Router();
 
 router.get('/signup', (req, res) => {
@@ -14,35 +14,32 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-	async function createUser() {
-		const user = await db.user.findOrCreate({
+	db.user
+		.findOrCreate({
 			where: {
-				email: req.body.email,
-			},
-			defaults: {
-				name: req.body.name,
+				username: req.body.username,
 				password: req.body.password,
+				email: req.body.email,
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
 			},
+		})
+		.then(([user, created]) => {
+			// If created, this means success, redirect to home.
+			if (created) {
+				passport.authenticate('local', {
+					successRedirect: '/',
+					successFlash: 'Account created and user logged in!',
+				})(req, res);
+			} else {
+				req.flash('error', 'Email already exists!');
+				res.redirect('/auth/signup');
+			}
+		})
+		.catch(err => {
+			req.flash('error', err.message);
+			res.redirect('/auth/signup');
 		});
-
-		// 		.then(([user, created]) => {
-		// 			// If created, this means success, redirect to home.
-		// 			if (created) {
-		// 				passport.authenticate('local', {
-		// 					successRedirect: '/',
-		// 					successFlash:
-		// 						'Account created and user logged in!',
-		// 				})(req, res);
-		// 			} else {
-		// 				req.flash('error', 'Email already exists!');
-		// 				res.redirect('/auth/signup');
-		// 			}
-		// 		})
-		// 		.catch(err => {
-		// 			req.flash('error', err.message);
-		// 			res.redirect('auth/signup');
-		// 		});
-	}
 });
 
 router.get('/login', (req, res) => {

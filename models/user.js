@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 			});
 		}
 	}
+	
 	user.init(
 		{
 			username: {
@@ -65,8 +66,6 @@ module.exports = (sequelize, DataTypes) => {
 					},
 					notEmpty: true,
 					notNull: true,
-					isLowercase: true,
-					isUppercase: true,
 				},
 			},
 			firstName: {
