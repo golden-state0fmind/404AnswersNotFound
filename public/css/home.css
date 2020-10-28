@@ -16,6 +16,13 @@ textarea.form-control {
     height: 100px;
 }
 
+.container {
+    width: 100%;
+    padding: 20px 15px 0 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 #recent_questions {
     height: 200px;
     margin-top: 20px;
@@ -47,10 +54,9 @@ textarea.form-control {
 	display: flex;
 	flex-direction: column;
 	width: 250px;
-	position: relative;
-	left: 115%;
-	top: 15%;
-	left: 570px;
+	position: absolute;
+	bottom: 45%;
+	left: 1185px;
 }
 #user,
 #password {
