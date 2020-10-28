@@ -9,7 +9,7 @@
   <form class="form" action="/auth/login" method="POST">
     <div class="form-group">
       <label id="login" for="auth-email">Login</label>
-      <input class="form-control" aria-describedby="emailHelp" id="auth-email" type="email" name="email"
+      <input class="form-control" aria-describedby="emailHelp" id="auth-email" type="text" name="username"
         placeholder="email or user name" required>
       <small id="emailHelp" class="form-text text-muted"></small>
     </div>
@@ -18,6 +18,6 @@
       <input type="password" class="form-control" id="auth-password" name="password" required>
     </div>
     <button type="submit" class="btn btn-dark" value=" ">Login</button>
-    <button type="submit" class="btn btn-dark"><a id="registerbtn" href="/auth/signup">Register</a></button>
   </form>
+  <button type="submit" class="btn btn-dark"><a id="registerbtn" href="/auth/signup">Register</a></button>
 </div>

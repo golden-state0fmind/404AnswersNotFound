@@ -19,25 +19,19 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			category: {
 				type: DataTypes.STRING,
-				allowNull: false,
 			},
 			createdBy: {
 				type: DataTypes.STRING,
-				allowNull: false,
 			},
 			lastModifiedBy: {
 				type: DataTypes.INTEGER,
-				allowNull: false,
 			},
 			lastModifiedDate: {
 				type: DataTypes.DATE,
 			},
 			summary: {
 				type: DataTypes.STRING,
-				allowNull: false,
 				validate: {
-					notNull: true,
-					notEmpty: true,
 					len: {
 						args: [100 - 255],
 						msg: 'Must be between 100 to 255 characters',
@@ -55,11 +49,6 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			content: {
 				type: DataTypes.TEXT,
-				allowNull: false,
-				validate: {
-					notNull: true,
-					notEmpty: true,
-				},
 			},
 			upVotes: DataTypes.INTEGER,
 			downVotes: DataTypes.STRING,

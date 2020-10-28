@@ -1,28 +1,34 @@
 require('dotenv').config();
-require(__dirname + '/config/config.json')[process.env.DB_PASS];
+require(__dirname + '/config/config.js')[process.env.DB_PASS];
 const db = require('./models');
 
-db.user
-	.create({
-		username: 'coddd',
-		password: 'moo',
-		firstName: 'Brian',
-		lastName: 'Blankenship',
-		email: 'brian.ga.eddul@gmail.com',
-		title: 'hombre',
-		quote: 'Noooooooo!',
-		jobTitle: 'Software Engineer',
-		bio: 'I am me',
+/* db.user
+	.findOne({
+		where: {
+			username: 'TestAccount',
+			password: 'CrankyAccountsbeCranky',
+			firstName: 'Chuck',
+			lastName: 'Norris',
+			email: 'that2@email.com',
+			title: 'hombre',
+			quote: 'Noooooooo',
+			jobTitle: 'Actor',
+			bio: 'I am me',
+		},
 	})
 	.then(([user, created]) => {
-		console.log('This is\n', user);
+		//console.log('This is\n', user);
 		db.question
-			.findOrCreate({
+			.create({
 				where: {
-					summary: 'Hello Bob',
+					createdBy: user.dataValues.id,
+					summary: 'What sound does the ghost make?',
+					content: 'Boo',
 				},
 			})
 			.then(([question, created]) => {
+				console.log(question);
+
 				user.addQuestion(question)
 					.then(relationInfo => {
 						console.log(relationInfo);
@@ -35,21 +41,25 @@ db.user
 	.catch(error => {
 		console.log(error);
 	});
+ */
+async function testDB() {
+     const [user, created] = await db.user.create({
+          username: 'SecretAgent',
+          password: 'sasquatchisrealyesheis',
+          email: 'that@email.com',
+          firstName: 'James',
+          lastName: 'Bond',
+     });
 
-db.categories
-	.findOrCreate({
-		where: {
-			category: 'Location',
-		},
-	})
-	.then(([categories, created]) => {
-		db.question
-			.findOne({
-				where: {
-					id: 1,
-				},
-			})
-			.then(question => {
-				categories.addQuestion(question);
-			});
-	});
+     console.log(created);
+     console.log(user);
+     console.log('-------------------\n');
+
+     const question = await db.question.create({
+          summary: 'Where are my keys?',
+          content:
+               "I've looked everywhere for them and they're no where to be seen!",
+     });
+
+     user.associate(question);
+}
