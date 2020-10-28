@@ -43,22 +43,23 @@ const db = require('./models');
 	});
  */
 async function testDB() {
-	const [user, created] = await db.user.create({
-		username: 'SecretAgent',
-		password: 'sasquatchisrealyesheis',
-		email: 'that@email.com',
-		firstName: 'James',
-		lastName: 'Bond',
-	});
+     const [user, created] = await db.user.create({
+          username: 'SecretAgent',
+          password: 'sasquatchisrealyesheis',
+          email: 'that@email.com',
+          firstName: 'James',
+          lastName: 'Bond',
+     });
 
-	console.log(created);
-	console.log(user);
-	console.log('-------------------\n');
+     console.log(created);
+     console.log(user);
+     console.log('-------------------\n');
 
-	const question = await db.question.create({
-		summary: 'Where are my keys?',
-		content: "I've looked everywhere for them and they're no where to be seen!",
-	});
+     const question = await db.question.create({
+          summary: 'Where are my keys?',
+          content:
+               "I've looked everywhere for them and they're no where to be seen!",
+     });
 
-	user.associate(question);
+     user.associate(question);
 }
