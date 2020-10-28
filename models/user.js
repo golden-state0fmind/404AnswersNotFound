@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
 	class user extends Model {
 		/**
@@ -18,6 +20,16 @@ module.exports = (sequelize, DataTypes) => {
 				},
 			});
 		}
+
+		validPassword(passwordTyped) {
+			return bcrypt.compareSync(passwordTyped, this.password);
+		}
+
+		toJSON() {
+			let userData = this.get();
+			delete userData.password;
+			return userData;
+		}
 	}
 	
 	user.init(
@@ -26,7 +38,6 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING(25),
 				allowNull: false,
 				unique: true,
-				constraints: false,
 				validate: {
 					len: {
 						args: [5, 25],
@@ -48,17 +59,17 @@ module.exports = (sequelize, DataTypes) => {
 				},
 			},
 			password: {
-				type: DataTypes.STRING(99),
+				type: DataTypes.STRING,
 				allowNull: false,
 				validate: {
 					len: {
-						args: [15, 99],
-						msg: 'Must be 15 to 99 characters.',
+						args: [8, 99],
+						msg: 'Must be 8 to 99 characters.',
 					},
 					notContains: ' ',
 					min: {
-						args: 15,
-						msg: 'Must contain at least 15 characters.',
+						args: 8,
+						msg: 'Must contain at least 8 characters.',
 					},
 					max: {
 						args: 99,
@@ -136,7 +147,6 @@ module.exports = (sequelize, DataTypes) => {
 						args: 500,
 						msg: 'Can only be 500 characters long.',
 					},
-					isAlphanumeric: true,
 				},
 			},
 			profilePicture: {
@@ -165,5 +175,16 @@ module.exports = (sequelize, DataTypes) => {
 			modelName: 'user',
 		}
 	);
+ 
+	user.beforeCreate((pendingUser, options) => {
+		// if a user exists and if user has a password.
+		if (pendingUser && pendingUser.password) {
+			// hash password
+			let hash = bcrypt.hashSync(pendingUser.password, 12);
+			// store hash as password
+			pendingUser.password = hash;
+		}
+	});
+	
 	return user;
 };
