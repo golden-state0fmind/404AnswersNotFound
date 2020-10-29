@@ -40,9 +40,16 @@
 				<header>
 					<h3>Recent Answers</h3>
 				</header>
-				<article>
-					<!-- Loop through the recent five answers -->
-				</article>
+				<% for (let i = 0; i < answers.length; i++) { %>
+					<article id="<%= answers[i].createdBy %>_answer" class="inquisition">
+						<header class="inquest_author"><%= answers[i].createdBy %> asked <%= answers[i].lastModifiedDate.toLocaleString() %></header>
+						<small class="inquest">
+							<%= answers[i].summary %><br />
+							<%= answers[i].content.slice(0, 300) %> ...
+						</small>
+						<hr>
+					</article>
+				<% } %> 
 			</section>
 			<%- include ('partials/categories') %>
 			</hr>

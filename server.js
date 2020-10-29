@@ -50,9 +50,26 @@ app.get('/', (req, res) => {
           description: 'Where answers are not found, but found.',
           style: '/css/home.css',
      };
-     db.question.findAll({ limit: 3 }).then(question => {
-          res.render('home', { meta: locals, questions: question });
-     });
+     db.question
+          .findAll({ limit: 3 })
+          .then(question => {
+               db.answer
+                    .findAll({ limit: 3 })
+                    .then(answer => {
+                         console.log(answer)
+                         res.render('home', {
+                              meta: locals,
+                              questions: question,
+                              answers: answer,
+                         });
+                    })
+                    .catch(err => {
+                         console.log(err);
+                    });
+          })
+          .catch(err => {
+               console.log(err);
+          });
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {
