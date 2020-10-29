@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 			},
 			lastModifiedBy: {
-				type: DataTypes.INTEGER,
+				type: DataTypes.STRING,
 			},
 			lastModifiedDate: {
 				type: DataTypes.DATE,
