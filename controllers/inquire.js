@@ -1,6 +1,6 @@
 const db = require('../models');
 const express = require('express');
-const passport = require('../config/ppConfig');
+const passport = require('../config/ppConfig.js');
 const router = express.Router();
 
 router.get('/create/inquisition', (req, res) => {
@@ -20,7 +20,6 @@ router.get('/inquiry/:id', (req, res) => {
           // eslint-disable-next-line prettier/prettier
           style: '/css/inquiry.css',
      };
-
      res.render('inquire/inquiry', { meta: locals });
 });
 

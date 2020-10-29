@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 require('dotenv').config();
-require(__dirname + '/config/config.js');
+require(__dirname + '/config/config.json');
 const db = require('./models');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
@@ -93,8 +94,7 @@ app.use('/inquire', require('./controllers/inquire'));
 
 var server = app.listen(process.env.PORT || 8000, () =>
      console.log(
-          `🎧You're listening to the smooth sounds of port ${
-               process.env.PORT || 8000
+          `🎧You're listening to the smooth sounds of port ${process.env.PORT || 8000
           }🎧`
      )
 );
