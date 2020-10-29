@@ -1,5 +1,7 @@
 'use strict';
-const { Model } = require('sequelize');
+const {
+	Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
 	class answer extends Model {
 		/**
@@ -14,35 +16,36 @@ module.exports = (sequelize, DataTypes) => {
 			});
 		}
 	}
-	answer.init(
-		{
-			createdBy: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-			},
-			lastModifiedBy: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-			},
-			lastModifiedDate: {
-				type: DataTypes.DATE,
-				allowNull: false,
-			},
-			content: {
-				type: DataTypes.TEXT,
-				allowNull: false,
-				validate: {
-					notNull: true,
-					notEmpty: true,
-				}
-			},
-			upVotes: DataTypes.INTEGER,
-			downVotes: DataTypes.INTEGER,
+	answer.init({
+		createdBy: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
 		},
-		{
-			sequelize,
-			modelName: 'answer',
-		}
-	);
+		lastModifiedBy: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		lastModifiedDate: {
+			type: DataTypes.DATE,
+			allowNull: false,
+		},
+		content: {
+			type: DataTypes.TEXT,
+			allowNull: false,
+			validate: {
+				notNull: true,
+				notEmpty: true,
+			}
+		},
+		upVotes: DataTypes.INTEGER,
+		downVotes: DataTypes.INTEGER,
+		QID: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+	}, {
+		sequelize,
+		modelName: 'answer',
+	});
 	return answer;
 };

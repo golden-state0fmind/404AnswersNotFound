@@ -11,7 +11,7 @@ module.exports = {
       createdBy: {
         type: Sequelize.INTEGER
       },
-      lastModifiedByuserId: {
+      lastModifiedBy: {
         type: Sequelize.INTEGER
       },
       lastModifiedDate: {
@@ -26,6 +26,10 @@ module.exports = {
       },
       downVotes: {
         type: Sequelize.INTEGER
+      },
+      QID: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
