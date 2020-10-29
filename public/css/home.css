@@ -26,14 +26,17 @@ main {
 	margin-left: 20px;
 	position: absolute;
 	top: 4px;
-	right: 0;
+	right: 100px;
 }
 
 #quick {
 	display: flex;
 	flex-direction: row;
-	width: 750px;
+	justify-content: center;
+	width: 100%;
+	margin-top: 100px;
 	position: relative;
+	right: 100px;
 }
 
 #quick_post {
