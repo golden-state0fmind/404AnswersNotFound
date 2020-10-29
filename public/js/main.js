@@ -1,5 +1,7 @@
+const db = require('../../models');
+
 const handleClick = () => {
-	window.location.href = '/auth/signup';
+     window.location.href = '/auth/signup';
 };
 
 document.getElementById('registerbtn').addEventListener('click', handleClick);

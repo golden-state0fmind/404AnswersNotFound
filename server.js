@@ -1,5 +1,6 @@
 require('dotenv').config();
 require(__dirname + '/config/config.js');
+const db = require('./models');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const flash = require('connect-flash');
@@ -49,7 +50,9 @@ app.get('/', (req, res) => {
           description: 'Where answers are not found, but found.',
           style: '/css/home.css',
      };
-     res.render('home', { meta: locals });
+     db.question.findAll({ limit: 3 }).then(question => {
+          res.render('home', { meta: locals, questions: question });
+     });
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {
