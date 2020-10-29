@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       createdBy: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
-      lastModifiedByuserId: {
-        type: Sequelize.INTEGER
+      lastModifiedBy: {
+        type: Sequelize.STRING
       },
       lastModifiedDate: {
         type: Sequelize.DATE
@@ -26,6 +26,10 @@ module.exports = {
       },
       downVotes: {
         type: Sequelize.INTEGER
+      },
+      QID: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

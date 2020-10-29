@@ -12,21 +12,12 @@ body {
 	padding-left: 228px;
 }
 
-textarea.form-control {
-    height: 100px;
-}
-
-.container {
-    width: 100%;
-    padding: 20px 15px 0 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
 
 #recent_questions {
-    height: 200px;
-    margin-top: 20px;
 	background-color: #343a40;
+    height: 500px;
+	margin-top: 20px;
+	padding: 20px;
 }	
 
 #recent_questions header {
@@ -50,14 +41,7 @@ textarea.form-control {
 	bottom: 20px;
 	left: 797px;
 }
-#categories{
-	display: flex;
-	flex-direction: column;
-	width: 250px;
-	position: absolute;
-	bottom: 45%;
-	left: 1185px;
-}
+
 #user,
 #password {
 	width: 200px;
@@ -69,6 +53,17 @@ textarea.form-control {
 #pass_container {
 	display: inline-block;
 }
-#registerbtn {
+#registerBtn {
 	display: inline;
+}
+
+.container {
+	width: 100%;
+	padding: 20px 15px 0 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.inquest_author {
+	width: 100% !important;
 }

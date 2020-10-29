@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
 				foreignKey: 'createdBy',
 				target: 'username',
 			});
-			models.question.hasMany(models.answer);
+			models.question.hasMany(models.answer, {
+				foreignKey: 'QID',
+			});
 		}
 	}
 	question.init(
@@ -24,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 			},
 			lastModifiedBy: {
-				type: DataTypes.INTEGER,
+				type: DataTypes.STRING,
 			},
 			lastModifiedDate: {
 				type: DataTypes.DATE,

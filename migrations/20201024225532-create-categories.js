@@ -9,8 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       qid: {
-        foreignKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       category: {
         type: Sequelize.STRING(30)
