@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     error: DataTypes.TEXT,
     location: DataTypes.STRING,
     activity: DataTypes.STRING,
-    user: DataTypes.STRING
+    user: DataTypes.STRING,
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'bug',
