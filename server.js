@@ -27,6 +27,9 @@ app.use(
           secret: process.env.SECRET,
           resave: false,
           saveUninitialized: true,
+          cookie: {
+               sameSite: 'strict',
+          },
      })
 );
 
@@ -58,27 +61,29 @@ app.get('/', (req, res) => {
           locals.isLoggedIn = false;
      }
 
-     db.question
-          .findAll({ limit: 3 })
-          .then(question => {
-               db.answer
-                    .findAll({ limit: 3 })
-                    .then(answer => {
-                         res.render('home', {
-                              meta: locals,
-                              questions: question,
-                              answers: answer,
+     db.question.findAll({ limit: 3 }).then(question => {
+          db.answer
+               .findAll({ limit: 3 })
+               .then(answer => {
+                    db.categories
+                         .findAll()
+                         .then(category => {
+                              res.render('home', {
+                                   meta: locals,
+                                   questions: question,
+                                   answers: answer,
+                                   cat: category,
+                              });
+                         })
+                         .catch(err => {
+                              console.log(err);
                          });
-                    })
-                    .catch(err => {
-                         console.log(err);
-                    });
-          })
-          .catch(err => {
-               console.log(err);
-          });
+               })
+               .catch(err => {
+                    console.log(err);
+               });
+     });
 });
-
 app.get('/profile', isLoggedIn, (req, res) => {
      const locals = {
           title: 'Test',
