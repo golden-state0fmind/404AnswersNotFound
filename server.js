@@ -35,7 +35,6 @@ app.use(
 
 app.use(flash());
 
-// Must come below session config.
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -57,7 +56,6 @@ app.get('/', (req, res) => {
      if (req.user) {
           locals.isLoggedIn = true;
      } else {
-          console.log('Not logged in');
           locals.isLoggedIn = false;
      }
 
@@ -84,6 +82,7 @@ app.get('/', (req, res) => {
                });
      });
 });
+
 app.get('/profile', isLoggedIn, (req, res) => {
      const locals = {
           title: 'Test',
@@ -95,6 +94,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 app.use('/auth', require('./controllers/auth'));
 app.use('/inquire', require('./controllers/inquire'));
+app.use('/users', require('./controllers/profiles'));
 
 var server = app.listen(process.env.PORT || 8000, () =>
      console.log(
