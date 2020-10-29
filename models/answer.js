@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	answer.init({
 		createdBy: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING,
 			allowNull: false,
 		},
 		lastModifiedBy: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING,
 			allowNull: false,
 		},
 		lastModifiedDate: {

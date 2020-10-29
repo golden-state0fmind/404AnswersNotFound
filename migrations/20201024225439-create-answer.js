@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       createdBy: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       lastModifiedBy: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       lastModifiedDate: {
         type: Sequelize.DATE
