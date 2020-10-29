@@ -3,13 +3,13 @@
 		<div class="container" id="content_holder">
 			<section id="question">
 				<header id="question_short">
-					<h3>Where have all my eggs gone?</h3>
+					<h3><%= data.dataValues.summary %> </h3>
 				</header>
 				<article id="content">
-					<p>You can't fool me!</p>
+					<p><%= data.dataValues.content %></p>
 				</article>
 				<article id="stats">
-					<p><span>Created by c0dezer019</span>, <span>Inquired date</span></p>
+					<p><span>Created by <a href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>, <span>Inquired <time><%= data.dataValues.createdAt.toLocaleString() %></time></span></p>
 				</article>
 			</section>
 			<hr>
@@ -17,9 +17,12 @@
 				<header>
 					<h3>Answers</h3>
 				</header>
-				<article>
-					<!-- Loop through all the answers -->
-				</article>
+				<% for (let i = 0; i < data2.length; i++ ) { %>
+						<article>
+							<p><%= data2[i].dataValues.content %></p>
+						</article>
+						<hr>
+				<% } %>
 			</section>
 		</div>
 	</main>
