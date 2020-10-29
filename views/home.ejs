@@ -1,33 +1,19 @@
 <div class="container-fluid">
 	<div class="container" id="content_holder">
 		<main>
-			<div class="container">
-				<form class="form" action="/auth/login" method="GET">
-					<div class="form-group">
-						<div id="user_container">
-							<label id="user_label" for="user" class="loginlabel">Login</label>
-							<!-- user login  -->
-							<input class="form-control" id="user" type="text" name="user"
-								placeholder="email or user name" required>
-						</div>
-						<div id="pass_container">
-							<label id="password_label" for="password" class="loginlabel">Password</label>
-							<!-- user password -->
-							<input type="password" class="form-control" id="password" name="password" required>
-						</div>
-						<button type="submit" class="btn btn-dark" value=" ">Login</button>
-					</div>
-				</form>
-				<button type="submit" class="btn btn-dark" id="registerBtn">Register</button>
-			</div>
+			<% if (!meta.isLoggedIn) { %>
+				<%- include('partials/login.ejs') %>
+			<% } else { %>
+				<%- include('partials/quickPost.ejs') %>
+			<% } %>
 			<hr>
 			<section id="recent_questions" class="rounded">
 				<header>
 					<h3>Recent Questions</h3>
 				</header>
 				<% for (let i = 0; i < questions.length; i++) { %>
-					<article id="<%= questions[i].createdBy %>_question" class="inquisition">
-						<header class="inquest_author"><%= questions[i].createdBy %> asked <%= questions[i].lastModifiedDate.toLocaleString() %></header>
+					<article id="<%= questions[i].createdBy %>_question" class="recent_inquisition">
+						<header class="author"><%= questions[i].createdBy %> asked <%= questions[i].lastModifiedDate.toLocaleString() %></header>
 						<small class="inquest">
 							<%= questions[i].summary %><br />
 							<%= questions[i].content.slice(0, 300) %> ...
@@ -41,8 +27,8 @@
 					<h3>Recent Answers</h3>
 				</header>
 				<% for (let i = 0; i < answers.length; i++) { %>
-					<article id="<%= answers[i].createdBy %>_answer" class="inquisition">
-						<header class="inquest_author"><%= answers[i].createdBy %> asked <%= answers[i].lastModifiedDate.toLocaleString() %></header>
+					<article id="<%= answers[i].createdBy %>_answer" class="recent_answers">
+						<header class="author"><%= answers[i].createdBy %> asked <%= answers[i].lastModifiedDate.toLocaleString() %></header>
 						<small class="inquest">
 							<%= answers[i].summary %><br />
 							<%= answers[i].content.slice(0, 300) %> ...

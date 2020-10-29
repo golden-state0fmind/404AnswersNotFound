@@ -49,6 +49,7 @@ router.get('/login', (req, res) => {
      const locals = {
           title: 'Login',
           description: null,
+          style: '/css/login.css',
      };
      res.render('auth/login', { meta: locals });
 });

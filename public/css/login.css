@@ -17,6 +17,17 @@ body {
 #login {
 	color: whitesmoke;
 }
-#registerbtn {
+
+#registerBtn2 {
 	color: whitesmoke;
+	height: 33px;
+	line-height: 0.5;
+	width: 90px;
+}
+
+#loginBtn {
+	color: whitesmoke;
+	height: 33px;
+	line-height: 0.5;
+	width: 90px;
 }
