@@ -49,14 +49,21 @@ app.get('/', (req, res) => {
           title: '404AnswersNotFound',
           description: 'Where answers are not found, but found.',
           style: '/css/home.css',
+          isLoggedIn: false,
      };
+     if (req.user) {
+          locals.isLoggedIn = true;
+     } else {
+          console.log('Not logged in');
+          locals.isLoggedIn = false;
+     }
+
      db.question
           .findAll({ limit: 3 })
           .then(question => {
                db.answer
                     .findAll({ limit: 3 })
                     .then(answer => {
-                         console.log(answer)
                          res.render('home', {
                               meta: locals,
                               questions: question,
