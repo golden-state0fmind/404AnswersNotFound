@@ -11,8 +11,23 @@ body {
 	margin-top: 250px;
 }
 .form-group input {
+	display: inline;
 	width: 100%;
 }
 #login {
 	color: whitesmoke;
+}
+
+#registerBtn2 {
+	color: whitesmoke;
+	height: 33px;
+	line-height: 0.5;
+	width: 90px;
+}
+
+#loginBtn {
+	color: whitesmoke;
+	height: 33px;
+	line-height: 0.5;
+	width: 90px;
 }

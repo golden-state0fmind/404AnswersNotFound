@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	categories.init(
 		{
-			qid: DataTypes.INTEGER,
+			qid: DataTypes.ARRAY(DataTypes.INTEGER),
 			category: DataTypes.STRING(30),
 		},
 		{

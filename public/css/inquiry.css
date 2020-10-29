@@ -1,0 +1,21 @@
+html, body {
+	height: 100%;
+
+}
+
+#content_holder {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 800px;
+}
+
+#question {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#stats {
+	text-align: right;
+	font-size: 12px;
+}
