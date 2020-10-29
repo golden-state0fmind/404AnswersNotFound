@@ -1,6 +1,6 @@
 const handleClick = e => {
      if (e.target.id === 'spanish_inquisition') {
-          window.location.href = '/inquire/create/inquisition';
+          return (window.location.href = '/inquire/create/inquisition');
      }
      window.location.href = '/auth/signup';
 };
