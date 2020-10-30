@@ -16,7 +16,12 @@ router.use((req, res, next) => {
      res.locals.currentUser = req.user;
      next();
 });
-//POST saving question into db
+
+
+/*=============================================
+=            Add inquisition to Database      =
+=============================================*/
+
 router.post('/create/inquisition', (req, res) => {
      // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
      db.question
@@ -27,7 +32,6 @@ router.post('/create/inquisition', (req, res) => {
           })
           .then(question => {
                res.redirect('/');
-               // res.redirect(`inquire/inquiry/${req.body.id}`);
           })
           .catch(err => {
                console.log(err);
@@ -41,6 +45,11 @@ router.post('/create/inquisition', (req, res) => {
           });
 });
 
+
+/*=============================================
+=            Create an inquisition form       =
+=============================================*/
+
 router.get('/create/inquisition', (req, res) => {
      const locals = {
           title: 'Make an inquisition',
@@ -50,6 +59,11 @@ router.get('/create/inquisition', (req, res) => {
      };
      res.render('inquire/inquisition', { meta: locals });
 });
+
+
+/*=============================================
+=            Edit an inquisition              =
+=============================================*/
 
 router.put('/:idx', (req, res) => {
      db.question.update(
@@ -66,6 +80,11 @@ router.put('/:idx', (req, res) => {
 
      res.redirect(`/`);
 });
+
+
+/*=============================================
+=            Delete an inquisition            =
+=============================================*/
 
 router.delete('/:id', (req, res) => {
      db.question
@@ -87,6 +106,11 @@ router.delete('/:id', (req, res) => {
 
      res.redirect('/');
 });
+
+
+/*=============================================
+=            View an inquisition              =
+=============================================*/
 
 router.get('/inquiry/:id', (req, res) => {
      const locals = {
@@ -165,7 +189,12 @@ router.get('/inquiry/:id', (req, res) => {
                     });
           });
 });
-//Home route
+
+
+/*=============================================
+=            List of all inquisitions         =
+=============================================*/
+
 router.get('/', (req, res) => {
      const locals = {
           summary: req.body.summary,
