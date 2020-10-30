@@ -43,7 +43,7 @@ router.get('/create/inquisition', (req, res) => {
      res.render('inquire/inquisition', { meta: locals });
 });
 
-router.put('/inquire/inquiry/:idx', (req, res) => {
+router.put('/:idx', (req, res) => {
      db.question.update(
           {
                summary: req.body.summary,
@@ -60,7 +60,7 @@ router.put('/inquire/inquiry/:idx', (req, res) => {
      })
 });
 
-router.delete('/delete/inquisition/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
      db.question
           .destroy({
                where: {

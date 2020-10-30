@@ -15,7 +15,7 @@
 										href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>,
 								<span>Inquired
 									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
-									<form method="POST" action="remove/inquisition/<%= data.dataValues.id %>/?_method=DELETE">
+									<form method="POST" action="/inquire/<%= data.dataValues.id %>/?_method=DELETE">
 										<span><button name="deleteQuestion" id="delete_question" class="btn btn-link"
 												role="button">Delete</button></span>
 									</form>
@@ -52,7 +52,7 @@
 		</div>
 		<% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 		<div id="edit">
-			<form  method="POST" action="/inquire/inquiry/<%= data.dataValues.id %>/?_method=PUT">
+			<form  method="POST" action="/inquire/<%= data.dataValues.id %>/?_method=PUT">
 				<div class="form-group">
 					<div class="container" id="sum_container">
 						<label for="summary">Summary: </label>
