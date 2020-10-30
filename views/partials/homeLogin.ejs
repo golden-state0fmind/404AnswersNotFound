@@ -1,11 +1,11 @@
 <div class="container" id="homeLogin">
-	<form class="form" action="/auth/login" method="GET">
+	<form class="form" action="/auth/login" method="POST">
 		<div class="form-group">
 			<div id="user_container">
 				<label id="user_label" for="username" class="loginlabel">Login</label>
 				<!-- user login  -->
-				<input class="form-control" id="username" type="text" name="username"
-					placeholder="email or user name" required>
+				<input class="form-control" id="username" type="text" name="username" placeholder="email or user name"
+					required>
 			</div>
 			<div id="pass_container">
 				<label id="password_label" for="password" class="loginLabel">Password</label>
@@ -15,5 +15,5 @@
 			<button id="loginBtn" type="submit" class="btn btn-dark">Login</button>
 		</div>
 	</form>
-	<button type="submit" class="btn btn-dark" id="registerBtn">Register</button>
+	<a name="register" id="registerBtn" class="btn btn-primary" href="/auth/signup" role="button">Register</a>
 </div>

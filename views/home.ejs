@@ -2,9 +2,9 @@
 	<div class="container" id="content_holder">
 		<main>
 			<% if (!meta.isLoggedIn) { %>
-				<%- include('partials/login.ejs') %>
+				<%- include('partials/homeLogin.ejs') %>
 			<% } else { %>
-				<%- include('partials/quickPost.ejs') %>
+			<%- include('partials/quickPost.ejs') %>
 			<% } %>
 			<hr>
 			<section id="recent_questions" class="rounded">
@@ -13,10 +13,10 @@
 				</header>
 				<% for (let i = 0; i < questions.length; i++) { %>
 					<article id="<%= questions[i].createdBy %>_question" class="recent_inquisition">
-						<header class="author"><%= questions[i].createdBy %> asked <%= questions[i].lastModifiedDate.toLocaleString() %></header>
+						<header class="author"><%= questions[i].createdBy %> asked <time><%= questions[i].lastModifiedDate.toLocaleString() %></time></header>
 						<small class="inquest">
 							<%= questions[i].summary %><br />
-							<%= questions[i].content.slice(0, 300) %> ...
+							<%= questions[i].content.slice(0, 300) %> ... <a href="/inquire/inquiry/<%= answers[i].id %> ">Read More</a>
 						</small>
 						<hr>
 					</article>
@@ -27,15 +27,17 @@
 					<h3>Recent Answers</h3>
 				</header>
 				<% for (let i = 0; i < answers.length; i++) { %>
-					<article id="<%= answers[i].createdBy %>_answer" class="recent_answers">
-						<header class="author"><%= answers[i].createdBy %> asked <%= answers[i].lastModifiedDate.toLocaleString() %></header>
-						<small class="inquest">
-							<%= answers[i].summary %><br />
-							<%= answers[i].content.slice(0, 300) %> ...
-						</small>
-						<hr>
-					</article>
-				<% } %> 
+				<article id="<%= answers[i].createdBy %>_answer" class="recent_answers">
+					<header class="author"><%= answers[i].createdBy %> asked
+						<%= answers[i].lastModifiedDate.toLocaleString() %></header>
+					<small class="inquest">
+						<%= answers[i].summary %><br />
+						<%= answers[i].content.slice(0, 300) %> ... <a
+							href="/inquire/inquiry/<%= answers[i].QID %>">Read More</a>
+					</small>
+					<hr>
+				</article>
+				<% } %>
 			</section>
 			<%- include ('partials/categories') %>
 			</hr>

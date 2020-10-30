@@ -10,7 +10,6 @@ router.get('/signup', (req, res) => {
           style: '/css/signup.css',
      };
      res.render('auth/signup', { meta: locals });
-     // res.render('auth/signup');
 });
 
 router.post('/signup', (req, res) => {
@@ -25,7 +24,6 @@ router.post('/signup', (req, res) => {
                },
           })
           .then(([user, created]) => {
-               console.log('Beginning console.log');
                // If created, this means success, redirect to home.
                if (created) {
                     console.log('We have entered the if statement.');
