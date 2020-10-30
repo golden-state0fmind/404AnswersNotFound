@@ -60,11 +60,17 @@ router.put('/inquire/inquiry/:idx', (req, res) => {
      })
 });
 
-router.delete('/delete/inquisition/:id', (req, res) => {
+
+/*=============================================
+=            Delete an inquisition            =
+=============================================*/
+
+router.delete('/:idx', (req, res) => {
+     
      db.question
           .destroy({
                where: {
-                    id: req.params.id,
+                    id: req.params.idx,
                },
           })
           .catch(err => {
@@ -72,7 +78,7 @@ router.delete('/delete/inquisition/:id', (req, res) => {
                db.bug.create({
                     error: `${err}`,
                     location: 'Inquisition_delete_route',
-                    activity: `Deleting inquisition ID ${req.params.id}`,
+                    activity: `Deleting inquisition ID ${req.params.idx}`,
                     user: req.user.dataValues.username,
                     status: 'Untracked',
                });
