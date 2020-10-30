@@ -12,17 +12,53 @@ module.exports = (sequelize, DataTypes) => {
 				foreignKey: 'createdBy',
 				target: 'username',
 			});
-			models.question.hasMany(models.answer);
+			models.question.hasMany(models.answer, {
+				foreignKey: 'QID',
+			});
 		}
 	}
 	question.init(
 		{
-			category: DataTypes.STRING,
-			createdBy: DataTypes.INTEGER,
-			lastModifiedBy: DataTypes.INTEGER,
-			lastModifiedDate: DataTypes.DATE,
-			summary: DataTypes.STRING,
-			content: DataTypes.TEXT,
+			category: {
+				type: DataTypes.STRING,
+			},
+			createdBy: {
+				type: DataTypes.STRING,
+			},
+			lastModifiedBy: {
+				type: DataTypes.STRING,
+			},
+			lastModifiedDate: {
+				type: DataTypes.DATE,
+			},
+			summary: {
+				type: DataTypes.STRING,
+				validate: {
+					len: {
+						args: [100 - 255],
+						msg: 'Must be between 100 to 255 characters',
+					},
+					min: {
+						args: 100,
+						// eslint-disable-next-line prettier/prettier
+						msg: 'Must be at least 100 characters long to ensure quality control.',
+					},
+					max: {
+						args: 255,
+						msg: 'Must be 255 characters or less.',
+					},
+				},
+			},
+			content: {
+				type: DataTypes.TEXT,
+				validation: {
+					min: {
+						args: 300,
+						msg: 'Details need to be at least 300 characters.',
+					},
+					
+				}
+			},
 			upVotes: DataTypes.INTEGER,
 			downVotes: DataTypes.STRING,
 			answerIds: DataTypes.ARRAY(DataTypes.INTEGER),

@@ -1,0 +1,16 @@
+<section id="categories">
+    <table class="table table-hover table-dark rounded">
+        <thead>
+        <tr>
+            <th scope="col">Categories</th>
+        </tr>
+        </thead>
+        <tbody id="cats">
+            <% cat.forEach( el => { %>
+                <tr>
+                    <td><%= el.dataValues.category %></td>
+                </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+</section>	

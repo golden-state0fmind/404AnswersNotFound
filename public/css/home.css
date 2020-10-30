@@ -1,22 +1,71 @@
-html, body {
+html,
+body {
 	height: 100%;
+	background-color: #8D98A7;
+	color: antiquewhite;
+}
+hr {
+	background-color: #8D98A7;
+}
+
+main {
+	width: auto;
 }
 
 #content_holder {
-	width: 679px;
+	display: inline-block;
+	width: 1100px;
+	height: auto;
+	margin-left: 300px;
+}
+
+#finalize {
+	height: 32px;
+	width: 80px;
+	line-height: 0.5;
+	margin-left: 20px;
+	position: absolute;
+	top: 4px;
+	right: 100px;
+}
+
+#quick {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	margin-top: 100px;
+	position: relative;
+	right: 100px;
+}
+
+#quick_post {
+	margin-left: 20px;
+	width: 537px;
+}
+
+#quick_post_label {
+	width: 100px;
+	position: relative;
+	top: 7px;
+	left: 25px;
 }
 
 #recent_questions {
-	height: 200px;
-	margin-top: 80px;
-}
+	background-color: #343a40;
+    height: 500px;
+	margin-top: 20px;
+	padding: 20px;
+}	
 
 #recent_questions header {
 	width: 250px;
 }
 #recent_answers {
-	height: 200px;
-	margin-top: 40px;
+	background-color: #343a40;
+    height: 500px;
+	margin-top: 20px;
+	padding: 20px;
 }
 
 #qQuestion {
@@ -28,5 +77,41 @@ html, body {
 	line-height: 0.5;
 	position: relative;
 	bottom: 20px;
-	left: 570px;
+	left: 797px;
+}
+
+#user,
+#password {
+	width: 200px;
+}
+
+#user_container,
+#pass_container {
+	display: inline-block;
+}
+
+#pass_container {
+	margin-left: 5px;
+}
+
+#homeLogin {
+	display: flex;
+}
+
+#registerBtn {
+	height: 38px;
+	position: relative;
+	top: 33px;
+	margin-left: 10px;
+}
+
+.container {
+	width: 100%;
+	padding: 20px 15px 0 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.author {
+	width: 100% !important;
 }

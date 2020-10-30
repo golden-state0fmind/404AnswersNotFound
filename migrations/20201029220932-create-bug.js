@@ -1,39 +1,27 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('questions', {
+    await queryInterface.createTable('bugs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      category: {
-        type: Sequelize.STRING
-      },
-      createdBy: {
-        type: Sequelize.STRING
-      },
-      lastModifiedBy: {
-        type: Sequelize.STRING
-      },
-      lastModifiedDate: {
-        type: Sequelize.DATE
-      },
-      summary: {
-        type: Sequelize.STRING
-      },
-      content: {
+      error: {
         type: Sequelize.TEXT
       },
-      upVotes: {
-        type: Sequelize.INTEGER
-      },
-      downVotes: {
+      location: {
         type: Sequelize.STRING
       },
-      answerIds: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
+      activity: {
+        type: Sequelize.STRING
+      },
+      user: {
+        type: Sequelize.STRING
+      },
+      status: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +34,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('questions');
+    await queryInterface.dropTable('bugs');
   }
 };

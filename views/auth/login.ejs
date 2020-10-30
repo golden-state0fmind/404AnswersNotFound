@@ -1,15 +1,8 @@
-<!-- 
-  1.adding bootstrap form for the login fields
-  2.adding flex container
--->
-<!-- style sheet for the login page for individual styling -->
-<link rel="stylesheet" href="/css/styleLogin.css">
-<!-- Forms needed for login -->
 <div class="container">
   <form class="form" action="/auth/login" method="POST">
     <div class="form-group">
       <label id="login" for="auth-email">Login</label>
-      <input class="form-control" aria-describedby="emailHelp" id="auth-email" type="email" name="email"
+      <input class="form-control" aria-describedby="emailHelp" id="auth-email" type="text" name="username"
         placeholder="email or user name" required>
       <small id="emailHelp" class="form-text text-muted"></small>
     </div>
@@ -17,6 +10,7 @@
       <label id="login" for="auth-password">Password</label>
       <input type="password" class="form-control" id="auth-password" name="password" required>
     </div>
-    <button type="submit" class="btn btn-dark">Login</button>
+    <button type="submit" class="btn btn-dark" value=" ">Login</button>
+    <button id="registerBtn2" type="submit" class="btn btn-dark">Register</button>
   </form>
 </div>
