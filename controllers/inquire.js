@@ -11,12 +11,17 @@ router.use(
           extended: false,
      })
 );
+router.use((req, res, next) => {
+     res.locals.alerts = req.flash();
+     res.locals.currentUser = req.user;
+     next();
+});
 //POST saving question into db
 router.post('/create/inquisition', (req, res) => {
      // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
      db.question
           .create({
-               createdBY: req.user.dataValues.id,
+               createdBy: req.user.dataValues.username,
                summary: req.body.summary,
                content: req.body.content,
           })
@@ -24,13 +29,16 @@ router.post('/create/inquisition', (req, res) => {
                res.redirect('/');
                // res.redirect(`inquire/inquiry/${req.body.id}`);
           })
-          .catch(err => {});
-});
-
-router.use((req, res, next) => {
-     res.locals.alerts = req.flash();
-     res.locals.currentUser = req.user;
-     next();
+          .catch(err => {
+               console.log(err);
+               db.bug.create({
+                    error: `${err}`,
+                    location: 'create_inquisition_route',
+                    activity: `Creating inquisition`,
+                    user: req.user.dataValues.username,
+                    status: 'Untracked',
+               });
+          });
 });
 
 router.get('/create/inquisition', (req, res) => {
@@ -54,10 +62,9 @@ router.put('/:idx', (req, res) => {
                     id: req.params.idx,
                },
           }
-     ).then (question => {
+     );
 
-          res.redirect(`inquire/inquiry/${req.params.idx}`);
-     })
+     res.redirect(`inquire/inquiry/${req.params.idx}`);
 });
 
 router.delete('/:id', (req, res) => {
@@ -77,6 +84,8 @@ router.delete('/:id', (req, res) => {
                     status: 'Untracked',
                });
           });
+
+     res.redirect('/');
 });
 
 router.get('/inquiry/:id', (req, res) => {
