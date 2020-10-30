@@ -4,19 +4,35 @@ const express = require('express');
 const passport = require('../config/ppConfig.js');
 const router = express.Router();
 
+router.use(passport.initialize());
+router.use(passport.session());
+router.use(
+     express.urlencoded({
+          extended: false,
+     })
+);
 //POST saving question into db
 router.post('/create/inquisition', (req, res) => {
      // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
-     db.question.create({
-          createdBY: req.user,
-          summary: req.body.summary,
-          content: req.body.content,
-     }).then((question) => {
-          res.redirect('back');
-     }).catch(err => {
-     })
+     db.question
+          .create({
+               createdBY: req.user.dataValues.id,
+               summary: req.body.summary,
+               content: req.body.content,
+          })
+          .then(question => {
+               res.redirect('/');
+               // res.redirect(`inquire/inquiry/${req.body.id}`);
+          })
+          .catch(err => { });
 });
-//GET for creating inquisitons
+
+router.use((req, res, next) => {
+     res.locals.alerts = req.flash();
+     res.locals.currentUser = req.user;
+     next();
+});
+
 router.get('/create/inquisition', (req, res) => {
      const locals = {
           title: 'Make an inquisition',
@@ -27,12 +43,7 @@ router.get('/create/inquisition', (req, res) => {
      res.render('inquire/inquisition', { meta: locals });
 });
 
-router.get('/inquiries', (req, res) => {
-     res.render('inquire/inquiries');
-});
-
-// Updating questions
-router.put('/edit/inquisition/:idx', (req, res) => {
+router.put('/:idx', (req, res) => {
      db.question.update(
           {
                summary: req.body.summary,
@@ -43,16 +54,38 @@ router.put('/edit/inquisition/:idx', (req, res) => {
                     id: req.params.idx,
                },
           }
-     );
-     res.redirect(`inquire/inquiry/${req.params.idx}`);
+     ).then(question => {
+
+          res.redirect(`inquire/inquiry/${req.params.idx}`);
+     })
 });
 
-// GET route for  
+router.delete('/:id', (req, res) => {
+     db.question
+          .destroy({
+               where: {
+                    id: req.params.id,
+               },
+          })
+          .catch(err => {
+               console.log(err);
+               db.bug.create({
+                    error: `${err}`,
+                    location: 'Inquisition_delete_route',
+                    activity: `Deleting inquisition ID ${req.params.id}`,
+                    user: req.user.dataValues.username,
+                    status: 'Untracked',
+               });
+          });
+});
+
 router.get('/inquiry/:id', (req, res) => {
      const locals = {
           title: req.params.id,
           description: req.body.summary,
           style: '/css/inquiry.css',
+          userIsLoggedIn: false,
+          loggedInUser: null,
      };
      let query;
      let queryRes;
@@ -63,7 +96,19 @@ router.get('/inquiry/:id', (req, res) => {
                },
           })
           .then(question => {
-               let query = question;
+               query = question;
+               if (
+                    req.user &&
+                    req.user.dataValues.username ==
+                    question.dataValues.createdBy
+               ) {
+                    locals.loggedInUser = req.user.dataValues.username;
+                    locals.userIsLoggedIn = true;
+               } else {
+                    console.log('Nope.');
+                    locals.userIsLoggedIn = false;
+               }
+
                db.answer
                     .findAll({
                          where: {
@@ -71,6 +116,18 @@ router.get('/inquiry/:id', (req, res) => {
                          },
                     })
                     .then(answer => {
+                         answer.forEach(el => {
+                              if (
+                                   req.user &&
+                                   req.user.dataValues.username ==
+                                   el.dataValues.createdBy
+                              ) {
+                                   locals.userIsLoggedIn = true;
+                              } else {
+                                   console.log('Nope.');
+                                   locals.userIsLoggedIn = false;
+                              }
+                         });
                          queryRes = answer;
                          res.render('inquire/inquiry', {
                               meta: locals,
@@ -79,8 +136,9 @@ router.get('/inquiry/:id', (req, res) => {
                          });
                     })
                     .catch(err => {
+                         console.log(err);
                          db.bug.create({
-                              error: err,
+                              error: `${err}`,
                               location: 'Inquiry_route',
                               activity: `Querying for answers to inquiry ID ${req.params.id}`,
                               user: req.user.dataValues.username,
@@ -105,7 +163,7 @@ router.get('/', (req, res) => {
           content: req.body.content,
           style: '/css/inquisition.css',
      };
-     res.render('inquiries', { meta: locals })
-})
+     res.render('inquiries', { meta: locals });
+});
 
 module.exports = router;

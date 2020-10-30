@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
-require(__dirname + '/config/config.json');
+require(__dirname + '/config/config.json')[process.env.DB_PASS];
 const db = require('./models');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const layouts = require('express-ejs-layouts');
 const passport = require('./config/ppConfig.js');
 const session = require('express-session');
+const methodOverride = require('method-override');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -19,8 +20,10 @@ app.use(
           extended: false,
      })
 );
+
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
+app.use(methodOverride('_method'));
 
 // Session config
 app.use(
@@ -52,7 +55,7 @@ app.get('/', (req, res) => {
           title: '404AnswersNotFound',
           description: 'Where answers are not found, but found.',
           style: '/css/home.css',
-          isLoggedIn: true,
+          isLoggedIn: false,
      };
      if (req.user) {
           locals.isLoggedIn = true;

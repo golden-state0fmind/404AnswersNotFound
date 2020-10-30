@@ -2,7 +2,7 @@
 	<div class="container" id="content_holder">
 		<main>
 			<% if (!meta.isLoggedIn) { %>
-			<%- include('partials/login.ejs') %>
+			<%- include('partials/homeLogin.ejs') %>
 			<% } else { %>
 			<%- include('partials/quickPost.ejs') %>
 			<% } %>
@@ -13,11 +13,12 @@
 				</header>
 				<% for (let i = 0; i < questions.length; i++) { %>
 				<article id="<%= questions[i].createdBy %>_question" class="recent_inquisition">
-					<header class="author"><%= questions[i].createdBy %> asked <%= questions[i].lastModifiedDate %>
-					</header>
+					<header class="author"><%= questions[i].createdBy %> asked
+						<time><%= questions[i].lastModifiedDate.toLocaleString() %></time></header>
 					<small class="inquest">
 						<%= questions[i].summary %><br />
-						<%= questions[i].content %> ... <a href="/inquire/inquiry/<%= questions[i].id %> ">Read More</a>
+						<%= questions[i].content.slice(0, 300) %> ... <a
+							href="/inquire/inquiry/<%= answers[i].id %> ">Read More</a>
 					</small>
 					<hr>
 				</article>
