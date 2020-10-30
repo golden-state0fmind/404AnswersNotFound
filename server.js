@@ -18,6 +18,7 @@ app.use(
           extended: false,
      })
 );
+
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 

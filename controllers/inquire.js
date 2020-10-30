@@ -13,11 +13,22 @@ router.get('/create/inquisition', (req, res) => {
      res.render('inquire/inquisition', { meta: locals });
 });
 
+router.put('/edit/inquisition/:id', (req, res) => {
+     db.answer
+          .findOne({
+               where: {
+                    id: req.params.id,
+               },
+          })
+          .then(answer => {});
+});
+
 router.get('/inquiry/:id', (req, res) => {
      const locals = {
           title: req.params.id,
           description: req.body.summary,
           style: '/css/inquiry.css',
+          userIsLoggedIn: false,
      };
 
      let query;
@@ -31,6 +42,16 @@ router.get('/inquiry/:id', (req, res) => {
           })
           .then(question => {
                query = question;
+               if (
+                    req.user &&
+                    req.user.dataValues.username ==
+                         question.dataValues.createdBy
+               ) {
+                    locals.userIsLoggedIn = true;
+               } else {
+                    console.log('Nope.');
+                    locals.userIsLoggedIn = false;
+               }
 
                db.answer
                     .findAll({
@@ -39,6 +60,18 @@ router.get('/inquiry/:id', (req, res) => {
                          },
                     })
                     .then(answer => {
+                         answer.forEach(el => {
+                              if (
+                                   req.user &&
+                                   req.user.dataValues.username ==
+                                        el.dataValues.createdBy
+                              ) {
+                                   locals.userIsLoggedIn = true;
+                              } else {
+                                   console.log('Nope.');
+                                   locals.userIsLoggedIn = false;
+                              }
+                         });
                          queryRes = answer;
                          res.render('inquire/inquiry', {
                               meta: locals,
@@ -47,8 +80,9 @@ router.get('/inquiry/:id', (req, res) => {
                          });
                     })
                     .catch(err => {
+                         console.log(err);
                          db.bug.create({
-                              error: err,
+                              error: `${err}`,
                               location: 'Inquiry_route',
                               activity: `Querying for answers to inquiry ID ${req.params.id}`,
                               user: req.user.dataValues.username,
@@ -66,7 +100,6 @@ router.get('/inquiry/:id', (req, res) => {
                     });
           });
 });
-
 router.get('/inquiries', (req, res) => {
      res.render('inquire/inquiries');
 });

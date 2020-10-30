@@ -2,15 +2,26 @@
 	<main>
 		<div class="container" id="content_holder">
 			<section id="question">
-				<header id="question_short">
-					<h3><%= data.dataValues.summary %> </h3>
-				</header>
-				<article id="content">
-					<p><%= data.dataValues.content %></p>
-				</article>
-				<article id="stats">
-					<p><span>Created by <a href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>, <span>Inquired <time><%= data.dataValues.createdAt.toLocaleString() %></time></span></p>
-				</article>
+				<div id="question_container">
+					<div id="question_content">
+						<header id="question_short">
+							<h3><%= data.dataValues.summary %> </h3>
+						</header>
+						<article id="content">
+							<p><%= data.dataValues.content %></p>
+						</article>
+						<article id="stats">
+							<p><span>Created by <a
+										href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>,
+								<span>Inquired
+									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.userIsLoggedIn) { %>
+									<span><button name="editQuestion" id="edit_question" class="btn btn-link"
+											role="button">Edit</button></span>
+									<% } %></span></p>
+									<% const editData = data.dataValues.id %> 
+						</article>
+					</div>
+				</div>
 			</section>
 			<hr>
 			<section id="answers">
@@ -18,12 +29,72 @@
 					<h3>Answers</h3>
 				</header>
 				<% for (let i = 0; i < data2.length; i++ ) { %>
-						<article>
-							<p><%= data2[i].dataValues.content %></p>
-						</article>
-						<hr>
+				<section>
+					<div class="answer_container">
+						<div class="answer_content">
+							<%= data2[i].dataValues.createdBy %> answered
+							<time><%= data2[i].dataValues.createdAt.toLocaleString() %></time>
+							<% if (meta.userIsLoggedIn) { %>
+							<span><button name="editAnswer" id="edit_answer" class="btn btn-link"
+									role="button">Edit</button></span>
+							<% } %></p>
+							<article id="answer_content">
+								<p><%= data2[i].dataValues.content %></p>
+							</article>
+						</div>
+					</div>
+				</section>
+				<hr>
 				<% } %>
 			</section>
 		</div>
 	</main>
 </div>
+<% const question = data.dataValues.content %>
+<% const summary = data.dataValues.summary %>
+
+<script>
+	console.log(question)
+	const questionContent = document.getElementById('question_content');
+	document.getElementById('edit_question').addEventListener('click', nSync);
+
+	function nSync(e) {
+		if (e.target.id === 'question_content') {
+		  questionContent.remove();
+		  setTimeout(replaceQuestion, 1000);
+     	}
+	}
+
+	function replaceQuestion() {
+		
+     const form = document.createElement('form');
+     form.setAttribute('action', `/edit/inquisition/${data.dataValues.id}`);
+     form.setAttribute('method', 'POST');
+     form.setAttribute('id', 'edit_i');
+
+     const label = document.createElement('label');
+     label.setAttribute('id', 'sum_label');
+     label.setAttribute('for', 'edit_summary');
+     label.innerText = 'Edit Summary';
+
+     const editSummary = document.createElement('INPUT');
+	 editSummary.setAttribute('id', 'edit_summary');
+	 editSummary.setAttribute('class', 'form-control')
+     editSummary.setAttribute('type', 'text');
+     editSummary.innerHTML(summary);
+
+     const contentLabel = document.createElement('label');
+     contentLabel.setAttribute('id', 'con_label');
+     contentLabel.setAttribute('for', 'edit_content');
+     contentLabel.innerText = 'Edit Content';
+
+     const editContent = document.createElement('textarea');
+     editContent.setAttribute('id', 'contentEditor');
+     editContent.setAttribute();
+	 editContent.innerHTML = question;
+	 
+	 const subBtn = document.createElement('button');
+	 subBtn.setAttribute('type', 'submit');
+	 subBtn.setAttribute('class', 'btn btn-primary');
+}
+</script>
