@@ -8,14 +8,12 @@ const router = express.Router();
 router.post('/create/inquisition', (req, res) => {
      // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
      db.question.create({
-          createdBY: req.user.dataValues.id,
+          createdBY: req.user,
           summary: req.body.summary,
           content: req.body.content,
      }).then((question) => {
-          res.redirect('/')
-          // res.redirect(`inquire/inquiry/${req.body.id}`);
+          res.redirect('back');
      }).catch(err => {
-
      })
 });
 //GET for creating inquisitons
@@ -32,6 +30,23 @@ router.get('/create/inquisition', (req, res) => {
 router.get('/inquiries', (req, res) => {
      res.render('inquire/inquiries');
 });
+
+// Updating questions
+router.put('/edit/inquisition/:idx', (req, res) => {
+     db.question.update(
+          {
+               summary: req.body.summary,
+               content: req.body.content,
+          },
+          {
+               where: {
+                    id: req.params.idx,
+               },
+          }
+     );
+     res.redirect(`inquire/inquiry/${req.params.idx}`);
+});
+
 // GET route for  
 router.get('/inquiry/:id', (req, res) => {
      const locals = {

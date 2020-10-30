@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
           isLoggedIn: true,
      };
      if (req.user) {
-          locals.isLoggedIn = false;
+          locals.isLoggedIn = true;
      } else {
           locals.isLoggedIn = false;
      }
