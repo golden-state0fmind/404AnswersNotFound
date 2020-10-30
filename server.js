@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 require('dotenv').config();
-require(__dirname + '/config/config.json');
+require(__dirname + '/config/config.js')[process.env.DB_PASS];
 const db = require('./models');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
@@ -55,10 +55,10 @@ app.get('/', (req, res) => {
           title: '404AnswersNotFound',
           description: 'Where answers are not found, but found.',
           style: '/css/home.css',
-          isLoggedIn: true,
+          isLoggedIn: false,
      };
      if (req.user) {
-          locals.isLoggedIn = false;
+          locals.isLoggedIn = true;
      } else {
           locals.isLoggedIn = false;
      }
