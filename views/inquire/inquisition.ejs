@@ -2,7 +2,7 @@
 	<main>
 		<div class="container" id="content_holder">
 			<section>
-				<form id="post" action="/create/inquisition" method="post">
+				<form id="post" action="/inquire/create/inquisition" method="POST">
 					<div class="form-group">
 						<div class="container" id="sum_container">
 							<label for="summary">Summary: </label>
@@ -14,8 +14,8 @@
 						</div>
 						<div class="container" id="detail_container">
 							<label for="details"> Details:</label>
-							<textarea type="text" class="form-control" id="details" aria-describedby="detail_help"
-								cols="25" rows="10" required></textarea>
+							<textarea type="text" class="form-control" name="content" id="details"
+								aria-describedby="detail_help" cols="25" rows="10" required></textarea>
 							<small id="detail_help" class="contentHelper form-text text-muted">View our <a
 									href="#">guidelines</a> to make
 								a quality question.</small>

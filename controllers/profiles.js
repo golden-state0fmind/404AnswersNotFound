@@ -21,7 +21,6 @@ router.get('/profile/user', isLoggedIn, (req, res) => {
           title: req.user.dataValues.username,
           description: null,
      };
-
      db.user
           .findOne({
                where: {
@@ -39,7 +38,6 @@ router.get('/profile/:user', (req, res) => {
           title: req.params.user,
           description: null,
      };
-
      db.user
           .findOne({
                where: {

@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 require('dotenv').config();
-require(__dirname + '/config/config.js');
+require(__dirname + '/config/config.json');
 const db = require('./models');
 const express = require('express');
 const isLoggedIn = require('./middleware/isLoggedIn');
@@ -54,10 +55,10 @@ app.get('/', (req, res) => {
           title: '404AnswersNotFound',
           description: 'Where answers are not found, but found.',
           style: '/css/home.css',
-          isLoggedIn: false,
+          isLoggedIn: true,
      };
      if (req.user) {
-          locals.isLoggedIn = true;
+          locals.isLoggedIn = false;
      } else {
           locals.isLoggedIn = false;
      }
@@ -91,7 +92,6 @@ app.get('/profile', isLoggedIn, (req, res) => {
           title: 'Test',
           description: 'This is a test',
      };
-
      res.render('profile', { meta: locals });
 });
 
@@ -101,8 +101,7 @@ app.use('/users', require('./controllers/profiles'));
 
 var server = app.listen(process.env.PORT || 8000, () =>
      console.log(
-          `🎧You're listening to the smooth sounds of port ${
-               process.env.PORT || 8000
+          `🎧You're listening to the smooth sounds of port ${process.env.PORT || 8000
           }🎧`
      )
 );
