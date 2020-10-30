@@ -10,21 +10,22 @@ router.use(
      express.urlencoded({
           extended: false,
      })
-     );
-     //POST saving question into db
-     router.post('/create/inquisition', (req, res) => {
-          // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
-          db.question.create({
+);
+//POST saving question into db
+router.post('/create/inquisition', (req, res) => {
+     // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
+     db.question
+          .create({
                createdBY: req.user.dataValues.id,
                summary: req.body.summary,
                content: req.body.content,
-          }).then((question) => {
-               res.redirect('/')
-               // res.redirect(`inquire/inquiry/${req.body.id}`);
-          }).catch(err => {
-     
           })
-     });
+          .then(question => {
+               res.redirect('/');
+               // res.redirect(`inquire/inquiry/${req.body.id}`);
+          })
+          .catch(err => {});
+});
 
 router.use((req, res, next) => {
      res.locals.alerts = req.flash();
@@ -42,7 +43,7 @@ router.get('/create/inquisition', (req, res) => {
      res.render('inquire/inquisition', { meta: locals });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/edit/inquisition/:id', (req, res) => {
      db.question.update(
           {
                summary: req.body.summary,
@@ -55,6 +56,25 @@ router.put('/:id', (req, res) => {
           }
      );
      res.redirect(`/inquiry/${req.params.id}`);
+});
+
+router.delete('/delete/inquisition/:id', (req, res) => {
+     db.question
+          .destroy({
+               where: {
+                    id: req.params.id,
+               },
+          })
+          .catch(err => {
+               console.log(err);
+               db.bug.create({
+                    error: `${err}`,
+                    location: 'Inquisition_delete_route',
+                    activity: `Deleting inquisition ID ${req.params.id}`,
+                    user: req.user.dataValues.username,
+                    status: 'Untracked',
+               });
+          });
 });
 
 router.get('/inquiry/:id', (req, res) => {
@@ -141,7 +161,7 @@ router.get('/', (req, res) => {
           content: req.body.content,
           style: '/css/inquisition.css',
      };
-     res.render('inquiries', { meta: locals })
-})
+     res.render('inquiries', { meta: locals });
+});
 
 module.exports = router;

@@ -15,10 +15,12 @@
 										href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>,
 								<span>Inquired
 									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
-									<form method="POST" action="delete/inquisition/id/?_method=DELETE"><span><button name="editQuestion" id="edit_question" class="btn btn-link"
-											role="button" >Edit</button></span>
-									<% } %></span></form></p>
-									<% const editData = data.dataValues.id %> 
+									<form method="POST" action="remove/inquisition/<%= data.dataValues.id %>/?_method=DELETE">
+										<span><button name="deleteQuestion" id="delete_question" class="btn btn-link"
+												role="button">Delete</button></span>
+									</form>
+									<% } %></span></p>
+							<% const editData = data.dataValues.id %>
 						</article>
 					</div>
 				</div>
@@ -50,23 +52,23 @@
 		</div>
 		<% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 		<div id="edit">
-			<form  method="POST" action="/edit/inquisition/<%= data.dataValues.id %>/?_method=PUT">
+			<form method="POST" action="/edit/inquisition/<%= data.dataValues.id %>/?_method=PUT">
 				<div class="form-group">
 					<div class="container" id="sum_container">
 						<label for="summary">Summary: </label>
-						<input class="form-control" type="text" name="summary" id="summary"
-							aria-describedby="summary" value="<%= data.dataValues.summary %>">
+						<input class="form-control" type="text" name="summary" id="summary" aria-describedby="summary"
+							value="<%= data.dataValues.summary %>">
 					</div>
 					<div class="container" id="detail_container">
 						<label for="details"> Edit details:</label>
-						<textarea type="text" class="form-control" id="details" aria-describedby="detail_help"
-							cols="25" rows="10"><%= data.dataValues.content %></textarea>
-	
+						<textarea type="text" class="form-control" id="details" aria-describedby="detail_help" cols="25"
+							rows="10"><%= data.dataValues.content %></textarea>
+
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</form>
 		</div>
-	<% } %>
+		<% } %>
 	</main>
 </div>
