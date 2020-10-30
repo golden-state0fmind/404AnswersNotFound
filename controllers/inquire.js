@@ -64,7 +64,7 @@ router.put('/:idx', (req, res) => {
           }
      );
 
-     res.redirect(`inquire/inquiry/${req.params.idx}`);
+     res.redirect(`/`);
 });
 
 router.delete('/:id', (req, res) => {
