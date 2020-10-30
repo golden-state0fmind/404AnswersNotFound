@@ -25,10 +25,7 @@
     </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-
-  <!-- Local Scripts -->
-  <script src="/js/main.js" defer></script>
+  </script>
 </head>
 
 <body>
@@ -46,8 +43,7 @@
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="inquire/create/inquisition">Inquisition</a>
-              <!-- <a class="nav-link" href="/inquire/inquiry">Inquisition</a> -->
+              <a class="nav-link" href="/inquire/inquiries">Inquiries</a>
             </li>
           </ul>
           <form action="/search" class="form-inline" method="GET">
@@ -66,10 +62,8 @@
               </div>
             </div>
           </div>
-          <form action="inquire/create/inquisition" method="POST">
-            <a href="inquire/create/inquisition" class="btn btn-secondary" role="button">Make an
-              Inquisition</a>
-          </form>
+          <a name="spanishInquisition" id="spanish_inquisition" class="btn btn-primary"
+            href="/inquire/create/inquisition" role="button">Make an Inquisition</a>
         </div>
       </nav>
     </header>

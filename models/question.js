@@ -51,6 +51,13 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			content: {
 				type: DataTypes.TEXT,
+				validation: {
+					min: {
+						args: 300,
+						msg: 'Details need to be at least 300 characters.',
+					},
+					
+				}
 			},
 			upVotes: DataTypes.INTEGER,
 			downVotes: DataTypes.STRING,
