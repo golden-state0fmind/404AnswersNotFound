@@ -11,27 +11,44 @@ router.use(
           extended: false,
      })
 );
-//POST saving question into db
-router.post('/create/inquisition', (req, res) => {
-     // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
-     db.question
-          .create({
-               createdBY: req.user.dataValues.id,
-               summary: req.body.summary,
-               content: req.body.content,
-          })
-          .then(question => {
-               res.redirect('/');
-               // res.redirect(`inquire/inquiry/${req.body.id}`);
-          })
-          .catch(err => {});
-});
-
 router.use((req, res, next) => {
      res.locals.alerts = req.flash();
      res.locals.currentUser = req.user;
      next();
 });
+
+
+/*=============================================
+=            Add inquisition to Database      =
+=============================================*/
+
+router.post('/create/inquisition', (req, res) => {
+     // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
+     db.question
+          .create({
+               createdBy: req.user.dataValues.username,
+               summary: req.body.summary,
+               content: req.body.content,
+          })
+          .then(question => {
+               res.redirect('/');
+          })
+          .catch(err => {
+               console.log(err);
+               db.bug.create({
+                    error: `${err}`,
+                    location: 'create_inquisition_route',
+                    activity: `Creating inquisition`,
+                    user: req.user.dataValues.username,
+                    status: 'Untracked',
+               });
+          });
+});
+
+
+/*=============================================
+=            Create an inquisition form       =
+=============================================*/
 
 router.get('/create/inquisition', (req, res) => {
      const locals = {
@@ -43,7 +60,12 @@ router.get('/create/inquisition', (req, res) => {
      res.render('inquire/inquisition', { meta: locals });
 });
 
-router.put('/inquire/inquiry/:idx', (req, res) => {
+
+/*=============================================
+=            Edit an inquisition              =
+=============================================*/
+
+router.put('/:idx', (req, res) => {
      db.question.update(
           {
                summary: req.body.summary,
@@ -54,10 +76,9 @@ router.put('/inquire/inquiry/:idx', (req, res) => {
                     id: req.params.idx,
                },
           }
-     ).then (question => {
+     );
 
-          res.redirect(`inquire/inquiry/${req.params.idx}`);
-     })
+     res.redirect(`/`);
 });
 
 
@@ -103,11 +124,19 @@ router.delete('/:idx', (req, res) => {
                     user: req.user.dataValues.username,
                     status: 'untracked',
                });
+          
           }
      }
      
      destroy(req.params.idx);
+
+     res.redirect('/');
 });
+
+
+/*=============================================
+=            View an inquisition              =
+=============================================*/
 
 router.get('/inquiry/:id', (req, res) => {
      const locals = {
@@ -186,7 +215,12 @@ router.get('/inquiry/:id', (req, res) => {
                     });
           });
 });
-//Home route
+
+
+/*=============================================
+=            List of all inquisitions         =
+=============================================*/
+
 router.get('/', (req, res) => {
      const locals = {
           summary: req.body.summary,
