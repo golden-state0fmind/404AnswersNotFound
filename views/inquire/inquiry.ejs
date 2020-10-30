@@ -15,9 +15,9 @@
 										href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>,
 								<span>Inquired
 									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
-									<span><button name="editQuestion" id="edit_question" class="btn btn-link"
+									<form method="POST" action="delete/inquisition/id/?_method=DELETE"><span><button name="editQuestion" id="edit_question" class="btn btn-link"
 											role="button" >Edit</button></span>
-									<% } %></span></p>
+									<% } %></span></form></p>
 									<% const editData = data.dataValues.id %> 
 						</article>
 					</div>
