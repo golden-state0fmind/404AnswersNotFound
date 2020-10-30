@@ -52,10 +52,10 @@ app.get('/', (req, res) => {
           title: '404AnswersNotFound',
           description: 'Where answers are not found, but found.',
           style: '/css/home.css',
-          isLoggedIn: false,
+          isLoggedIn: true,
      };
      if (req.user) {
-          locals.isLoggedIn = true;
+          locals.isLoggedIn = false;
      } else {
           locals.isLoggedIn = false;
      }
@@ -89,7 +89,6 @@ app.get('/profile', isLoggedIn, (req, res) => {
           title: 'Test',
           description: 'This is a test',
      };
-
      res.render('profile', { meta: locals });
 });
 
