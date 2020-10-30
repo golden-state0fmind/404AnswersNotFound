@@ -1,7 +1,23 @@
+/* eslint-disable prettier/prettier */
 const db = require('../models');
 const express = require('express');
 const passport = require('../config/ppConfig.js');
 const router = express.Router();
+
+// saving question into db
+router.post('/create/inquisition', (req, res) => {
+     // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
+     db.question.create({
+          createdBY: req.user.dataValues.id,
+          summary: req.body.summary,
+          content: req.body.content,
+     }).then((question) => {
+          // res.redirect(`inquire/inquiry/${req.body.id}`);
+          res.send('hello')
+     }).catch(err => {
+
+     })
+});
 
 router.get('/create/inquisition', (req, res) => {
      const locals = {
@@ -13,6 +29,10 @@ router.get('/create/inquisition', (req, res) => {
      res.render('inquire/inquisition', { meta: locals });
 });
 
+router.get('/inquiries', (req, res) => {
+     res.render('inquire/inquiries');
+});
+
 router.get('/inquiry/:id', (req, res) => {
      const locals = {
           title: req.params.id,
@@ -22,7 +42,6 @@ router.get('/inquiry/:id', (req, res) => {
 
      let query;
      let queryRes;
-
      db.question
           .findOne({
                where: {
@@ -30,8 +49,7 @@ router.get('/inquiry/:id', (req, res) => {
                },
           })
           .then(question => {
-               query = question;
-
+               let query = question;
                db.answer
                     .findAll({
                          where: {
@@ -66,9 +84,14 @@ router.get('/inquiry/:id', (req, res) => {
                     });
           });
 });
+router.get('/', (req, res) => {
 
-router.get('/inquiries', (req, res) => {
-     res.render('inquire/inquiries');
-});
+     const locals = {
+          summary: req.body.summary,
+          content: req.body.content,
+          style: '/css/inquisition.css',
+     };
+     res.render('inquiries', { meta: locals })
+})
 
 module.exports = router;
