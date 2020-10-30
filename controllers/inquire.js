@@ -2,6 +2,17 @@ const db = require('../models');
 const express = require('express');
 const passport = require('../config/ppConfig');
 const router = express.Router();
+const isLoggedIn = require('../middleware/isLoggedIn');
+const flash = require('connect-flash');
+
+router.use(passport.initialize());
+router.use(passport.session());
+
+router.use((req, res, next) => {
+     res.locals.alerts = req.flash();
+     res.locals.currentUser = req.user;
+     next();
+});
 
 router.get('/create/inquisition', (req, res) => {
      const locals = {
@@ -29,7 +40,9 @@ router.get('/inquiry/:id', (req, res) => {
           description: req.body.summary,
           style: '/css/inquiry.css',
           userIsLoggedIn: false,
+          loggedInUser: null,
      };
+     console.log(req.user);
 
      let query;
      let queryRes;
@@ -47,6 +60,7 @@ router.get('/inquiry/:id', (req, res) => {
                     req.user.dataValues.username ==
                          question.dataValues.createdBy
                ) {
+                    locals.loggedInUser = req.user.dataValues.username;
                     locals.userIsLoggedIn = true;
                } else {
                     console.log('Nope.');
@@ -100,6 +114,7 @@ router.get('/inquiry/:id', (req, res) => {
                     });
           });
 });
+
 router.get('/inquiries', (req, res) => {
      res.render('inquire/inquiries');
 });

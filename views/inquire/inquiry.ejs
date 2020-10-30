@@ -14,9 +14,9 @@
 							<p><span>Created by <a
 										href="/users/<%= data.dataValues.createdBy %>"><%= data.dataValues.createdBy %></a></span>,
 								<span>Inquired
-									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.userIsLoggedIn) { %>
+									<time><%= data.dataValues.createdAt.toLocaleString() %></time></span><span><% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 									<span><button name="editQuestion" id="edit_question" class="btn btn-link"
-											role="button">Edit</button></span>
+											role="button" >Edit</button></span>
 									<% } %></span></p>
 									<% const editData = data.dataValues.id %> 
 						</article>
@@ -34,7 +34,7 @@
 						<div class="answer_content">
 							<%= data2[i].dataValues.createdBy %> answered
 							<time><%= data2[i].dataValues.createdAt.toLocaleString() %></time>
-							<% if (meta.userIsLoggedIn) { %>
+							<% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 							<span><button name="editAnswer" id="edit_answer" class="btn btn-link"
 									role="button">Edit</button></span>
 							<% } %></p>
@@ -48,53 +48,25 @@
 				<% } %>
 			</section>
 		</div>
+		<% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
+		<div id="edit">
+			<form action="/edit/inquisition/<%- data.dataValues.id %>?_method=PUT" method="POST">
+				<div class="form-group">
+					<div class="container" id="sum_container">
+						<label for="summary">Summary: </label>
+						<input class="form-control" type="text" name="summary" id="summary"
+							aria-describedby="summary" value="<%= data.dataValues.summary %>">
+					</div>
+					<div class="container" id="detail_container">
+						<label for="details"> Edit details:</label>
+						<textarea type="text" class="form-control" id="details" aria-describedby="detail_help"
+							cols="25" rows="10"><%= data.dataValues.content %></textarea>
+	
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+		</div>
+	<% } %>
 	</main>
 </div>
-<% const question = data.dataValues.content %>
-<% const summary = data.dataValues.summary %>
-
-<script>
-	console.log(question)
-	const questionContent = document.getElementById('question_content');
-	document.getElementById('edit_question').addEventListener('click', nSync);
-
-	function nSync(e) {
-		if (e.target.id === 'question_content') {
-		  questionContent.remove();
-		  setTimeout(replaceQuestion, 1000);
-     	}
-	}
-
-	function replaceQuestion() {
-		
-     const form = document.createElement('form');
-     form.setAttribute('action', `/edit/inquisition/${data.dataValues.id}`);
-     form.setAttribute('method', 'POST');
-     form.setAttribute('id', 'edit_i');
-
-     const label = document.createElement('label');
-     label.setAttribute('id', 'sum_label');
-     label.setAttribute('for', 'edit_summary');
-     label.innerText = 'Edit Summary';
-
-     const editSummary = document.createElement('INPUT');
-	 editSummary.setAttribute('id', 'edit_summary');
-	 editSummary.setAttribute('class', 'form-control')
-     editSummary.setAttribute('type', 'text');
-     editSummary.innerHTML(summary);
-
-     const contentLabel = document.createElement('label');
-     contentLabel.setAttribute('id', 'con_label');
-     contentLabel.setAttribute('for', 'edit_content');
-     contentLabel.innerText = 'Edit Content';
-
-     const editContent = document.createElement('textarea');
-     editContent.setAttribute('id', 'contentEditor');
-     editContent.setAttribute();
-	 editContent.innerHTML = question;
-	 
-	 const subBtn = document.createElement('button');
-	 subBtn.setAttribute('type', 'submit');
-	 subBtn.setAttribute('class', 'btn btn-primary');
-}
-</script>

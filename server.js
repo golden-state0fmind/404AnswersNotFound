@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const layouts = require('express-ejs-layouts');
 const passport = require('./config/ppConfig.js');
 const session = require('express-session');
+const methodOverride = require('method-override');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -21,6 +22,7 @@ app.use(
 
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
+app.use(methodOverride('_method'));
 
 // Session config
 app.use(
