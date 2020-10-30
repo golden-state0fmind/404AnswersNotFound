@@ -67,22 +67,46 @@ router.put('/inquire/inquiry/:idx', (req, res) => {
 
 router.delete('/:idx', (req, res) => {
      
-     db.question
-          .destroy({
+     async function destroy(id) {
+          const question = await db.question.findOne({
                where: {
-                    id: req.params.idx,
+                    id: id,
                },
-          })
-          .catch(err => {
-               console.log(err);
-               db.bug.create({
-                    error: `${err}`,
-                    location: 'Inquisition_delete_route',
-                    activity: `Deleting inquisition ID ${req.params.idx}`,
-                    user: req.user.dataValues.username,
-                    status: 'Untracked',
-               });
           });
+     
+          if (question !== null) {
+               const answer = await db.answer.findAll({
+                    where: {
+                         QID: question.dataValues.id,
+                    },
+               });
+     
+               if (answer !== null) {
+                    await answer.destroy({
+                         where: {
+                              QID: question.dataValues.id,
+                         },
+                    });
+               }
+     
+               await question.destroy({
+                    where: {
+                         id: id,
+                    },
+               });
+          } else {
+               db.bug.create({
+                    error: `${req.user.dataValues.username} tried to delete a question that doesn't exist in the database`,
+     
+                    location: 'inquisition_delete_route',
+                    activity: 'Deleting a question',
+                    user: req.user.dataValues.username,
+                    status: 'untracked',
+               });
+          }
+     }
+     
+     destroy(req.params.idx);
 });
 
 router.get('/inquiry/:id', (req, res) => {
