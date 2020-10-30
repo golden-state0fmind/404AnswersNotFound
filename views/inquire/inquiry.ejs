@@ -50,7 +50,7 @@
 		</div>
 		<% if (meta.userIsLoggedIn && meta.loggedInUser == data.dataValues.createdBy) { %>
 		<div id="edit">
-			<form action="/edit/inquisition/<%- data.dataValues.id %>?_method=PUT" method="POST">
+			<form  method="POST" action="/edit/inquisition/<%= data.dataValues.id %>/?_method=PUT">
 				<div class="form-group">
 					<div class="container" id="sum_container">
 						<label for="summary">Summary: </label>

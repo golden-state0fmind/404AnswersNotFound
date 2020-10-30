@@ -2,12 +2,14 @@ const db = require('../models');
 const express = require('express');
 const passport = require('../config/ppConfig');
 const router = express.Router();
-const isLoggedIn = require('../middleware/isLoggedIn');
-const flash = require('connect-flash');
 
 router.use(passport.initialize());
 router.use(passport.session());
-
+router.use(
+     express.urlencoded({
+          extended: false,
+     })
+);
 router.use((req, res, next) => {
      res.locals.alerts = req.flash();
      res.locals.currentUser = req.user;
@@ -24,14 +26,19 @@ router.get('/create/inquisition', (req, res) => {
      res.render('inquire/inquisition', { meta: locals });
 });
 
-router.put('/edit/inquisition/:id', (req, res) => {
-     db.answer
-          .findOne({
+router.put('/:id', (req, res) => {
+     db.question.update(
+          {
+               summary: req.body.summary,
+               content: req.body.content,
+          },
+          {
                where: {
                     id: req.params.id,
                },
-          })
-          .then(answer => {});
+          }
+     );
+     res.redirect(`/inquiry/${req.params.id}`);
 });
 
 router.get('/inquiry/:id', (req, res) => {
