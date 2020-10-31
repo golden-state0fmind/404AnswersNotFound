@@ -46,7 +46,6 @@
           </ul>
           <form action="/search" class="form-inline" method="GET">
             <input class="form-control mr-sm-2" type="search" placeholder="Search questions" aria-label="Search">
-            <!-- TODO: Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> to footer -->
             <input id="search_glass" type="image" src="/images/search.png" alt="Eye" formmethod="GET"
               formaction="/search">
           </form>
@@ -55,9 +54,16 @@
               <button class="btn btn-default dropdown-toggle" type="button" id="user_menu" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false"><img id="profile_blank" class="rounded-circle"
                   src="/images/user.png" alt="Blank"></button>
-              <div class="dropdown-menu" aria-labelledby="user_menu">
-                <a href="/auth/signup">Register</a>/<a href="/auth/login">Login</a>
-              </div>
+                  <% if (!meta.isUserLoggedIn) { %> 
+                      <ul class="dropdown-menu" aria-labelledby="user_menu">
+                        <li><span class="dropdown-item"><a href="/auth/signup">Register</a>/<a href="/auth/login">Login</a></span></li>
+                      </ul>
+                <% } else if(meta.isUserLoggedIn) { %>
+                  <ul class="dropdown-menu" aria-labelledby="user_menu">
+                    <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+                  </ul>
+                <% } %>
+              </u>
             </div>
           </div>
           <a name="spanishInquisition" id="spanish_inquisition" class="btn btn-primary"
@@ -68,6 +74,10 @@
   </div>
   <%- include('partials/alerts') %>
   <%- body %>
+
+  <footer id="global_footer">
+    <p>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> </p>
+  </footer>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="container" id="content_holder">
 		<main>
-			<% if (!meta.isLoggedIn) { %>
+			<% if (!meta.isUserLoggedIn) { %>
 				<%- include('partials/homeLogin.ejs') %>
 			<% } else { %>
 			<%- include('partials/quickPost.ejs') %>
