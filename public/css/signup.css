@@ -1,8 +1,3 @@
-.btn-primary {
-	position: absolute;
-	bottom: 76px;
-	left: 70%;
-}
 
 .row {
 	margin-left: 69px;
@@ -72,6 +67,12 @@
 
 #pass_requirements {
 	margin-left: 57px;
+}
+
+#registerBtn {
+	position: absolute;
+	bottom: 24px;
+	left: 84%;
 }
 
 #username {
