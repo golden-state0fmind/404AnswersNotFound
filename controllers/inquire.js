@@ -24,25 +24,29 @@ router.use((req, res, next) => {
 
 router.post('/create/inquisition', (req, res) => {
      // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
-     db.question
-          .create({
-               createdBy: req.user.dataValues.username,
-               summary: req.body.summary,
-               content: req.body.content,
-          })
-          .then(question => {
-               res.redirect('/');
-          })
-          .catch(err => {
-               console.log(err);
-               db.bug.create({
-                    error: `${err}`,
-                    location: 'create_inquisition_route',
-                    activity: `Creating inquisition`,
-                    user: req.user.dataValues.username,
-                    status: 'Untracked',
+     if(req.user) {
+          db.question
+               .create({
+                    createdBy: req.user.dataValues.username,
+                    summary: req.body.summary,
+                    details: req.body.details,
+               })
+               .then(question => {
+                    res.redirect('/');
+               })
+               .catch(err => {
+                    console.log(err);
+                    db.bug.create({
+                         error: `${err}`,
+                         location: 'create_inquisition_route',
+                         activity: `Creating inquisition`,
+                         user: req.user.dataValues.username,
+                         status: 'Untracked',
+                    });
                });
-          });
+     } else {
+          res.redirect('/auth/login');
+     }
 });
 
 
@@ -69,7 +73,7 @@ router.put('/:idx', (req, res) => {
      db.question.update(
           {
                summary: req.body.summary,
-               content: req.body.content,
+               details: req.body.details,
           },
           {
                where: {
