@@ -1,3 +1,10 @@
+html,
+body {
+	height: 100%;
+	background-color: #8D98A7;
+	color: antiquewhite;
+}
+
 .navbar {
 	height: 40px;
 	position: relative;
