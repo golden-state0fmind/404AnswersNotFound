@@ -91,6 +91,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
      const locals = {
           title: 'Test',
           description: 'This is a test',
+          style: '/css/profile.css',
      };
      res.render('profile', { meta: locals });
 });

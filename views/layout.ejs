@@ -26,6 +26,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
+
+   <!-- Local scripts -->
+   <script src="<%- meta.script %>"></script> 
 </head>
 
 <body>
@@ -68,6 +71,7 @@
       </nav>
     </header>
   </div>
+  <%- include('partials/alerts') %>
   <%- body %>
 </body>
 
