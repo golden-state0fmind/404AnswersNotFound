@@ -11,27 +11,48 @@ router.use(
           extended: false,
      })
 );
-//POST saving question into db
-router.post('/create/inquisition', (req, res) => {
-     // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
-     db.question
-          .create({
-               createdBY: req.user.dataValues.id,
-               summary: req.body.summary,
-               content: req.body.content,
-          })
-          .then(question => {
-               res.redirect('/');
-               // res.redirect(`inquire/inquiry/${req.body.id}`);
-          })
-          .catch(err => { });
-});
-
 router.use((req, res, next) => {
      res.locals.alerts = req.flash();
      res.locals.currentUser = req.user;
      next();
 });
+
+
+/*=============================================
+=            Add inquisition to Database      =
+=============================================*/
+
+router.post('/create/inquisition', (req, res) => {
+     // Should redirect to the /inquiry/:id route below, showing the newly created inquisition.
+     if (req.user) {
+          db.question
+               .create({
+                    createdBy: req.user.dataValues.username,
+                    summary: req.body.summary,
+                    details: req.body.details,
+               })
+               .then(question => {
+                    res.redirect('/');
+               })
+               .catch(err => {
+                    console.log(err);
+                    db.bug.create({
+                         error: `${err}`,
+                         location: 'create_inquisition_route',
+                         activity: `Creating inquisition`,
+                         user: req.user.dataValues.username,
+                         status: 'Untracked',
+                    });
+               });
+     } else {
+          res.redirect('/auth/login');
+     }
+});
+
+
+/*=============================================
+=            Create an inquisition form       =
+=============================================*/
 
 router.get('/create/inquisition', (req, res) => {
      const locals = {
@@ -43,41 +64,83 @@ router.get('/create/inquisition', (req, res) => {
      res.render('inquire/inquisition', { meta: locals });
 });
 
+
+/*=============================================
+=            Edit an inquisition              =
+=============================================*/
+
 router.put('/:idx', (req, res) => {
      db.question.update(
           {
                summary: req.body.summary,
-               content: req.body.content,
+               details: req.body.details,
           },
           {
                where: {
                     id: req.params.idx,
                },
           }
-     ).then(question => {
+     );
 
-          res.redirect(`inquire/inquiry/${req.params.idx}`);
-     })
+     res.redirect(`/`);
 });
 
-router.delete('/:id', (req, res) => {
-     db.question
-          .destroy({
+
+/*=============================================
+=            Delete an inquisition            =
+=============================================*/
+
+router.delete('/:idx', (req, res) => {
+
+     async function destroy(id) {
+          const question = await db.question.findOne({
                where: {
-                    id: req.params.id,
+                    id: id,
                },
-          })
-          .catch(err => {
-               console.log(err);
-               db.bug.create({
-                    error: `${err}`,
-                    location: 'Inquisition_delete_route',
-                    activity: `Deleting inquisition ID ${req.params.id}`,
-                    user: req.user.dataValues.username,
-                    status: 'Untracked',
-               });
           });
+
+          if (question !== null) {
+               const answer = await db.answer.findAll({
+                    where: {
+                         QID: question.dataValues.id,
+                    },
+               });
+
+               if (answer !== null) {
+                    await answer.destroy({
+                         where: {
+                              QID: question.dataValues.id,
+                         },
+                    });
+               }
+
+               await question.destroy({
+                    where: {
+                         id: id,
+                    },
+               });
+          } else {
+               db.bug.create({
+                    error: `${req.user.dataValues.username} tried to delete a question that doesn't exist in the database`,
+
+                    location: 'inquisition_delete_route',
+                    activity: 'Deleting a question',
+                    user: req.user.dataValues.username,
+                    status: 'untracked',
+               });
+
+          }
+     }
+
+     destroy(req.params.idx);
+
+     res.redirect('/');
 });
+
+
+/*=============================================
+=            View an inquisition              =
+=============================================*/
 
 router.get('/inquiry/:id', (req, res) => {
      const locals = {
@@ -156,7 +219,12 @@ router.get('/inquiry/:id', (req, res) => {
                     });
           });
 });
-//Home route
+
+
+/*=============================================
+=            List of all inquisitions         =
+=============================================*/
+
 router.get('/', (req, res) => {
      const locals = {
           summary: req.body.summary,

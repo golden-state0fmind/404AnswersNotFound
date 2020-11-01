@@ -26,13 +26,11 @@ router.post('/signup', (req, res) => {
           .then(([user, created]) => {
                // If created, this means success, redirect to home.
                if (created) {
-                    console.log('We have entered the if statement.');
                     passport.authenticate('local', {
                          successRedirect: '/',
                          successFlash: 'Account created and user logged in!',
                     })(req, res);
                } else {
-                    console.log('We have entered the else zone.');
                     req.flash('error', 'Email already exists!');
                     res.redirect('/auth/signup');
                }

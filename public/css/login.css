@@ -2,6 +2,14 @@
 body {
 	background-color: #818181;
 }
+
+.alert {
+	color: yellow;
+	position: absolute;
+	left: 43%;
+	top: 32%;
+}
+
 .container {
 	display: flex;
 	width: 50%;
@@ -10,10 +18,12 @@ body {
 	padding: 50px;
 	margin-top: 250px;
 }
+
 .form-group input {
 	display: inline;
 	width: 100%;
 }
+
 #login {
 	color: whitesmoke;
 }
