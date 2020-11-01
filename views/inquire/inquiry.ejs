@@ -8,7 +8,7 @@
 							<h3><%= data.dataValues.summary %> </h3>
 						</header>
 						<article id="content">
-							<p><%= data.dataValues.content %></p>
+							<p><%= data.dataValues.details %></p>
 						</article>
 						<article id="stats">
 							<p><span>Created by <a
@@ -62,7 +62,7 @@
 					<div class="container" id="detail_container">
 						<label for="details"> Edit details:</label>
 						<textarea type="text" class="form-control" id="details" aria-describedby="detail_help"
-							cols="25" rows="10"><%= data.dataValues.content %></textarea>
+							cols="25" rows="10"><%= data.dataValues.details %></textarea>
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>

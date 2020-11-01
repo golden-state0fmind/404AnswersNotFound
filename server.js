@@ -55,12 +55,12 @@ app.get('/', (req, res) => {
           title: '404AnswersNotFound',
           description: 'Where answers are not found, but found.',
           style: '/css/home.css',
-          isLoggedIn: false,
+          isUserLoggedIn: false,
      };
      if (req.user) {
-          locals.isLoggedIn = true;
+          locals.isUserLoggedIn = true;
      } else {
-          locals.isLoggedIn = false;
+          locals.isUserLoggedIn = false;
      }
 
      db.question.findAll({ limit: 3 }).then(question => {
@@ -85,14 +85,6 @@ app.get('/', (req, res) => {
                     console.log(err);
                });
      });
-});
-
-app.get('/profile', isLoggedIn, (req, res) => {
-     const locals = {
-          title: 'Test',
-          description: 'This is a test',
-     };
-     res.render('profile', { meta: locals });
 });
 
 app.use('/auth', require('./controllers/auth'));

@@ -40,7 +40,6 @@ module.exports = (sequelize, DataTypes) => {
 					},
 					min: {
 						args: 100,
-						// eslint-disable-next-line prettier/prettier
 						msg: 'Must be at least 100 characters long to ensure quality control.',
 					},
 					max: {
@@ -49,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
 					},
 				},
 			},
-			content: {
+			details: {
 				type: DataTypes.TEXT,
 				validation: {
 					min: {

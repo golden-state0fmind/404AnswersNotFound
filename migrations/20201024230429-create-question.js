@@ -23,7 +23,7 @@ module.exports = {
       summary: {
         type: Sequelize.STRING
       },
-      content: {
+      details: {
         type: Sequelize.TEXT
       },
       upVotes: {

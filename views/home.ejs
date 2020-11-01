@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="container" id="content_holder">
 		<main>
-			<% if (!meta.isLoggedIn) { %>
+			<% if (!meta.isUserLoggedIn) { %>
 				<%- include('partials/homeLogin.ejs') %>
 			<% } else { %>
 			<%- include('partials/quickPost.ejs') %>
@@ -16,7 +16,7 @@
 						<header class="author"><%= questions[i].createdBy %> asked <time><%= questions[i].createdAt.toLocaleString() %></time></header>
 						<small class="inquest">
 							<%= questions[i].summary %><br />
-							<%= questions[i].content.slice(0, 300) %> ... <a href="/inquire/inquiry/<%= questions[i].id %> ">Read More</a>
+							<%= questions[i].details.slice(0, 300) %> ... <a href="/inquire/inquiry/<%= questions[i].id %> ">Read More</a>
 						</small>
 						<hr>
 					</article>
